@@ -1,0 +1,10 @@
+@import "~@angular/material/theming";
+
+.main-content {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 30px;
+  justify-content: space-between;
+  background: mat-color(mat-palette($mat-blue));
+  height: 90vh;
+}
