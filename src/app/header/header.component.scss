@@ -1,3 +1,12 @@
 mat-toolbar {
-    height: 10vh;
+  height: 10vh;
+  position: relative;
+  z-index: 2;
+}
+
+.title-text {
+  font-size: xx-large;
+  font-weight: 300;
+  margin-left: 5%;
+  text-shadow: 2px 2px 2px rgb(0 0 0 / 20%);
 }

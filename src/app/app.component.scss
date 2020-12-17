@@ -2,9 +2,39 @@
 
 .main-content {
   display: flex;
+  flex-grow: 1;
   flex-wrap: wrap;
   padding: 30px;
   justify-content: space-between;
-  background: mat-color(mat-palette($mat-blue));
   height: 90vh;
+}
+
+.flex {
+  display: flex;
+}
+
+.spacing-left {
+  flex-grow: 1;
+  max-width: 100px;
+}
+
+.spacing-right {
+  flex-grow: 1;
+  max-width: 200px;
+}
+
+.sidenav-content {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.sidenav {
+  padding: 20px;
+}
+
+.toolbar-container {
+  position: relative;
+  z-index: -1;
 }

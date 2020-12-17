@@ -1,6 +1,21 @@
-<app-header></app-header>
-<div class="main-content">
-  <app-cocktail-card></app-cocktail-card>
-  <app-cocktail-card></app-cocktail-card>
-  <app-cocktail-card></app-cocktail-card>
-</div>
+<app-header
+  (toggle)="toggleSideNav($event)"
+  [nav]="sidenav"
+  class="toolbar-container"
+></app-header>
+<mat-drawer-container class="container" autosize>
+  <mat-drawer #sidenav class="sidenav" mode="side">
+    <app-cocktail-list></app-cocktail-list>
+  </mat-drawer>
+  <mat-drawer-content>
+    <div class="flex">
+      <div class="spacing-left"></div>
+      <div class="main-content">
+        <app-cocktail-card></app-cocktail-card>
+        <app-cocktail-card></app-cocktail-card>
+        <app-cocktail-card></app-cocktail-card>
+      </div>
+      <div class="spacing-right"></div>
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>
