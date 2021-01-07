@@ -14,6 +14,6 @@ export class CocktailCardsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.cocktails = this.cocktailService.getCocktails();
+    this.cocktails = this.cocktailService.getDrinksByName('long island');
   }
 }
