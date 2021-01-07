@@ -1,4 +1,4 @@
-import { Cocktail } from './cocktail.model';
+import { Cocktail } from './ApiCocktail';
 
 describe('Cocktail', () => {
   it('should create an instance', () => {

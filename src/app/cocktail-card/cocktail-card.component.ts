@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import Cocktail from '../../models/Cocktail';
 
 @Component({
@@ -7,7 +7,7 @@ import Cocktail from '../../models/Cocktail';
   styleUrls: ['./cocktail-card.component.scss'],
 })
 export class CocktailCardComponent implements OnInit {
-  cocktail = new Cocktail();
+  @Input() cocktail!: Cocktail;
 
   constructor() {}
 

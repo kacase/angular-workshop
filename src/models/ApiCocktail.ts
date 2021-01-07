@@ -1,4 +1,4 @@
-export interface Cocktail {
+export interface ApiCocktail {
     dateModified: string,
     idDrink: string,
     strAlcoholic: string,

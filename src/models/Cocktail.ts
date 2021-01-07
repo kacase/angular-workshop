@@ -1,3 +1,5 @@
+import { ApiCocktail } from './ApiCocktail';
+
 class Cocktail {
   id: string;
   title: string;
@@ -6,24 +8,18 @@ class Cocktail {
   instructions: string;
   ingredients: string[];
 
-  constructor(
-    id?: string,
-    title?: string,
-    category?: string,
-    img?: string,
-    instructions?: string,
-    ingredients?: string[]
-  ) {
-    this.id = id ?? '12089';
-    this.title = title ?? 'Rum Old-Fashioned';
-    this.category = category ?? 'Ordinary Drink';
+  constructor(apiCocktail?: ApiCocktail) {
+    this.id = apiCocktail?.idDrink ?? '12089';
+    this.title = apiCocktail?.strDrink ?? 'Rum Old-Fashioned';
+    this.category = apiCocktail?.strCategory ?? 'Ordinary Drink';
     this.img =
-      img ??
+      apiCocktail?.strDrinkThumb ??
       'https://www.thecocktaildb.com//images//media//drink//otn2011504820649.jpg';
     this.instructions =
-      instructions ??
+      apiCocktail?.strInstructions ??
       'Stir powdered sugar, water, and bitters in an old-fashioned glass. When sugar has dissolved add ice cubes and light rum. Add the twist of lime peel, float 151 proof rum on top, and serve.';
-    this.ingredients = ingredients ?? [
+    // TODO: Get Ingredients from mapping
+    this.ingredients = [
       'Light rum',
       '151 proof rum',
       'Powdered sugar',

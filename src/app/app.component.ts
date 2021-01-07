@@ -1,6 +1,8 @@
 import { ViewChild } from '@angular/core';
 import { Component } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
+import Cocktail from 'src/models/Cocktail';
+import { CocktailService } from './services/cocktail.service';
 
 @Component({
   selector: 'app-root',
@@ -9,9 +11,14 @@ import { MatSidenav } from '@angular/material/sidenav';
 })
 export class AppComponent {
   showFiller = false;
+  cocktails: Cocktail[];
   @ViewChild('sidenav') public sidenav!: MatSidenav;
 
-  constructor() {}
+  constructor(private cocktailService: CocktailService) {
+    this.cocktails = [];
+  }
 
-  ngOnInit() {}
+  ngOnInit(): void {
+    this.cocktails = this.cocktailService.getCocktails();
+  }
 }

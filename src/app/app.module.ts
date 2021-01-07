@@ -11,7 +11,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppMaterialModule } from './app-material/app-material.module';
 
 import { HttpClientModule } from '@angular/common/http';
-import { CocktailsComponent } from './cocktails/cocktails.component';
 
 @NgModule({
   declarations: [
@@ -19,8 +18,7 @@ import { CocktailsComponent } from './cocktails/cocktails.component';
     HeaderComponent,
     CocktailCardComponent,
     CocktailListComponent,
-    CocktailListDetailComponent,
-    CocktailsComponent
+    CocktailListDetailComponent
   ],
   imports: [
     BrowserModule,
