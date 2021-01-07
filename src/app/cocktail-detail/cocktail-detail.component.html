@@ -1,0 +1,18 @@
+<div class="cocktail-detail">
+  <h1>
+    {{ cocktail.title }}
+  </h1>
+  <div class="img-flex">
+    <img
+      mat-card-image
+      [src]="cocktail.img"
+      alt="Image of a Cocktail"
+      class="cocktail-img"
+    />
+    <ul>
+      <li *ngFor="let ingredient of cocktail.ingredients">{{ ingredient }}</li>
+    </ul>
+  </div>
+
+  <p>{{ cocktail.instructions }}</p>
+</div>

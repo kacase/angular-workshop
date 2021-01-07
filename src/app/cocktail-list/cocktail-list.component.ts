@@ -1,4 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  ViewChild,
+  AfterViewChecked,
+  AfterViewInit,
+} from '@angular/core';
+import { MatSidenav } from '@angular/material/sidenav';
 import Cocktail from '../../models/Cocktail';
 import { CocktailService } from '../services/cocktail.service';
 
@@ -11,7 +19,7 @@ export class CocktailListComponent implements OnInit {
   cocktails: Cocktail[];
 
   constructor(private cocktailService: CocktailService) {
-    this.cocktails = [];
+    this.cocktails = this.cocktailService.getCocktails();
   }
 
   ngOnInit(): void {

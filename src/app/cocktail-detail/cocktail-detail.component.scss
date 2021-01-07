@@ -1,0 +1,20 @@
+.cocktail-detail {
+  margin-left: 50px;
+  margin-top: 20px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+}
+
+.cocktail-img {
+  width: 404px;
+  height: 404px;
+  margin-left: 0px;
+  margin-right: 50px;
+}
+
+.img-flex {
+  display: flex;
+  flex-direction: row;
+}

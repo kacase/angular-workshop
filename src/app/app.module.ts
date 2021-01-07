@@ -4,13 +4,15 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
-import { CocktailCardComponent } from './cocktail-card/cocktail-card.component';
+import { CocktailCardComponent } from './cocktail-cards/cocktail-card/cocktail-card.component';
 import { CocktailListComponent } from './cocktail-list/cocktail-list.component';
 import { CocktailListDetailComponent } from './cocktail-list/cocktail-list-detail/cocktail-list-detail.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppMaterialModule } from './app-material/app-material.module';
 
 import { HttpClientModule } from '@angular/common/http';
+import { CocktailDetailComponent } from './cocktail-detail/cocktail-detail.component';
+import { CocktailCardsComponent } from './cocktail-cards/cocktail-cards.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { HttpClientModule } from '@angular/common/http';
     HeaderComponent,
     CocktailCardComponent,
     CocktailListComponent,
-    CocktailListDetailComponent
+    CocktailListDetailComponent,
+    CocktailDetailComponent,
+    CocktailCardsComponent
   ],
   imports: [
     BrowserModule,

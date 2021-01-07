@@ -1,0 +1,22 @@
+.main-content {
+  display: flex;
+  flex-grow: 1;
+  flex-wrap: wrap;
+  padding: 30px;
+  justify-content: space-between;
+  height: 90vh;
+}
+
+.flex {
+  display: flex;
+}
+
+.spacing-left {
+  flex-grow: 1;
+  max-width: 100px;
+}
+
+.spacing-right {
+  flex-grow: 1;
+  max-width: 200px;
+}
