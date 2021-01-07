@@ -1,8 +1,4 @@
-<app-header
-  (toggle)="toggleSideNav($event)"
-  [nav]="sidenav"
-  class="toolbar-container"
-></app-header>
+<app-header [nav]="sidenav" class="toolbar-container"></app-header>
 <mat-drawer-container class="container" autosize>
   <mat-drawer #sidenav class="sidenav" mode="side">
     <app-cocktail-list></app-cocktail-list>
