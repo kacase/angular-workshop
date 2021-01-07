@@ -10,6 +10,9 @@ import { CocktailListDetailComponent } from './cocktail-list/cocktail-list-detai
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppMaterialModule } from './app-material/app-material.module';
 
+import { HttpClientModule } from '@angular/common/http';
+import { CocktailsComponent } from './cocktails/cocktails.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,12 +20,14 @@ import { AppMaterialModule } from './app-material/app-material.module';
     CocktailCardComponent,
     CocktailListComponent,
     CocktailListDetailComponent,
+    CocktailsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     AppMaterialModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent],
