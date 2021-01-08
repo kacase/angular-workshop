@@ -1,3 +1,12 @@
-<div *ngFor="let cocktail of cocktails" class="sidenav-content">
-  <app-cocktail-list-detail [cocktail]="cocktail"></app-cocktail-list-detail>
+<div class="sidenav-content">
+  <mat-toolbar></mat-toolbar>
+  <mat-nav-list>
+    <mat-list-item *ngFor="let cocktail of cocktails">
+      <h3 matLine>{{ cocktail.title }}</h3>
+      <p matLine>
+        <span> {{ cocktail.instructions }} </span>
+        <span class="demo-2"> -- xx </span>
+      </p>
+    </mat-list-item>
+  </mat-nav-list>
 </div>
