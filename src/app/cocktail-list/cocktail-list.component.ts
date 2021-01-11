@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import Cocktail from '../../models/Cocktail';
 import { CocktailService } from '../services/cocktail.service';
-import { PageEvent } from '@angular/material/paginator';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-cocktail-list',
@@ -9,6 +9,8 @@ import { PageEvent } from '@angular/material/paginator';
   styleUrls: ['./cocktail-list.component.scss'],
 })
 export class CocktailListComponent implements OnInit {
+  @ViewChild('paginator') paginator!: MatPaginator;
+  alcoholic = 'alcoholic';
   cocktails!: Cocktail[];
   pageEvent!: PageEvent;
   pageSize = 10;
@@ -23,12 +25,24 @@ export class CocktailListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.cocktails = this.cocktailService.getDrinksByAlcoholic(true);
+    this.cocktails = this.cocktailService.getDrinksByAlcoholic(
+      this.alcoholic === 'alcoholic'
+    );
   }
 
   filterAlcChanged(event: string) {
-    event === 'alcoholic'
-      ? (this.cocktails = this.cocktailService.getDrinksByAlcoholic(true))
-      : (this.cocktails = this.cocktailService.getDrinksByAlcoholic(false));
+    this.alcoholic = event;
+    this.cocktails = this.cocktailService.getDrinksByAlcoholic(
+      event === 'alcoholic'
+    );
+  }
+
+  filterIngredientChanged(event: string) {
+    this.paginator.firstPage();
+    event !== ''
+      ? (this.cocktails = this.cocktailService.getDrinksByIngredient(event))
+      : (this.cocktails = this.cocktailService.getDrinksByAlcoholic(
+          this.alcoholic === 'alcoholic'
+        ));
   }
 }

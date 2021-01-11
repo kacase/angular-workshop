@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import {
   Component,
   EventEmitter,
@@ -8,6 +7,7 @@ import {
 } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { CocktailService } from 'src/app/services/cocktail.service';
 
 @Component({
   selector: 'app-ingredient-filter',
@@ -16,49 +16,32 @@ import { map } from 'rxjs/operators';
 })
 export class IngredientFilterComponent implements OnInit {
   @Output() alcChanged = new EventEmitter<string>();
+  @Output() ingredientChanged = new EventEmitter<string>();
   ingredientFilter: string = '';
   currentIngredient = '';
-  ingredients: Observable<any> | undefined;
+  allIngredients!: string[];
+  ingredients!: string[];
 
-  constructor(private service: Service) {}
+  constructor(private cocktailService: CocktailService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.allIngredients = this.cocktailService.getIngridients();
+  }
 
   onValChange(value: string) {
     this.alcChanged.emit(value);
   }
 
   doFilter() {
-    this.ingredients = this.service
-      .getData()
-      .pipe(map((ingredients) => this.filter(ingredients)));
+    this.ingredients = this.allIngredients.filter((ingredient) => {
+      return (
+        ingredient
+          .toLowerCase()
+          .indexOf(this.currentIngredient.toLowerCase()) !== -1
+      );
+    });
   }
-
-  filter(values: any[]) {
-    console.log(values);
-    return values.filter((ingredient) =>
-      ingredient.joke.toLowerCase().includes(this.currentIngredient)
-    );
-  }
-}
-
-@Injectable({
-  providedIn: 'root',
-})
-export class Service {
-  constructor(private httpClient: HttpClient) {}
-
-  ingredients = [];
-
-  //TODO: get ingredients instead
-  getData() {
-    return this.ingredients.length
-      ? of(this.ingredients)
-      : this.httpClient.get<any>('https://api.icndb.com/jokes/random/5').pipe(
-          map((data) => {
-            this.ingredients = data.value;
-            return this.ingredients;
-          })
-        );
+  ingredientChosen() {
+    this.ingredientChanged.emit(this.currentIngredient);
   }
 }

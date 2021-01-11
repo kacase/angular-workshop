@@ -19,14 +19,16 @@
       #jokeField="ngModel"
       [(ngModel)]="currentIngredient"
       (ngModelChange)="doFilter()"
+      (keyup.enter)="ingredientChosen()"
     />
 
     <mat-autocomplete #auto="matAutocomplete">
       <mat-option
-        *ngFor="let ingredient of ingredients | async"
-        [value]="ingredient.joke"
+        *ngFor="let ingredient of ingredients"
+        [value]="ingredient"
+        (click)="ingredientChosen()"
       >
-        {{ ingredient.joke }}
+        {{ ingredient }}
       </mat-option>
     </mat-autocomplete>
   </mat-form-field>
