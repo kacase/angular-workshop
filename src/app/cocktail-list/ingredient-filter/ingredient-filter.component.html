@@ -1,0 +1,31 @@
+<div class="toolbar-content">
+  <mat-button-toggle-group name="alcoholic">
+    <mat-button-toggle value="alcoholic"
+      ><mat-icon>local_bar</mat-icon></mat-button-toggle
+    >
+    <mat-button-toggle value="non-alcoholic"
+      ><mat-icon>no_drinks</mat-icon></mat-button-toggle
+    >
+  </mat-button-toggle-group>
+
+  <mat-form-field appearance="outline" class="search-form">
+    <mat-label>Ingredient</mat-label>
+    <input
+      matInput
+      [matAutocomplete]="auto"
+      name="ingredient"
+      #jokeField="ngModel"
+      [(ngModel)]="currentIngredient"
+      (ngModelChange)="doFilter()"
+    />
+
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option
+        *ngFor="let ingredient of ingredients | async"
+        [value]="ingredient.joke"
+      >
+        {{ ingredient.joke }}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</div>

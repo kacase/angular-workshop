@@ -16,6 +16,8 @@ export class AppComponent implements OnInit {
   constructor(private cocktailService: CocktailService) {}
 
   ngOnInit(): void {
-    this.cocktails = this.cocktailService.getCocktails();
+    for (let i = 0; i < 12; i++) {
+      this.cocktails.push(this.cocktailService.getRandomDrink());
+    }
   }
 }

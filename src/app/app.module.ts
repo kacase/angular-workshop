@@ -13,6 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CocktailDetailComponent } from './cocktail-detail/cocktail-detail.component';
 import { CocktailCardsComponent } from './cocktail-cards/cocktail-cards.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { IngredientFilterComponent } from './cocktail-list/ingredient-filter/ingredient-filter.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CocktailListComponent,
     CocktailDetailComponent,
     CocktailCardsComponent,
+    IngredientFilterComponent,
   ],
   imports: [
     BrowserModule,

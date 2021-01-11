@@ -1,14 +1,5 @@
-import {
-  Component,
-  OnInit,
-  Input,
-  ViewChild,
-  AfterViewChecked,
-  AfterViewInit,
-} from '@angular/core';
-import { MatSidenav } from '@angular/material/sidenav';
+import { Component, OnInit, Input } from '@angular/core';
 import Cocktail from '../../models/Cocktail';
-import { CocktailService } from '../services/cocktail.service';
 
 @Component({
   selector: 'app-cocktail-list',
@@ -16,13 +7,9 @@ import { CocktailService } from '../services/cocktail.service';
   styleUrls: ['./cocktail-list.component.scss'],
 })
 export class CocktailListComponent implements OnInit {
-  cocktails: Cocktail[];
+  @Input() cocktails!: Cocktail[];
 
-  constructor(private cocktailService: CocktailService) {
-    this.cocktails = this.cocktailService.getCocktails();
-  }
+  constructor() {}
 
-  ngOnInit(): void {
-    this.cocktails = this.cocktailService.getCocktails();
-  }
+  ngOnInit(): void {}
 }

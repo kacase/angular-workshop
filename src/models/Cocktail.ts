@@ -13,8 +13,7 @@ class Cocktail {
     this.title = apiCocktail?.strDrink ?? 'Rum Old-Fashioned';
     this.category = apiCocktail?.strCategory ?? 'Ordinary Drink';
     this.img =
-      apiCocktail?.strDrinkThumb ??
-      'https://www.thecocktaildb.com//images//media//drink//otn2011504820649.jpg';
+      apiCocktail?.strDrinkThumb ?? '';
     this.instructions =
       apiCocktail?.strInstructions ??
       'Stir powdered sugar, water, and bitters in an old-fashioned glass. When sugar has dissolved add ice cubes and light rum. Add the twist of lime peel, float 151 proof rum on top, and serve.';

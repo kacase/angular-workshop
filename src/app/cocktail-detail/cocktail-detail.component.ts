@@ -9,8 +9,7 @@ import { CocktailService } from '../services/cocktail.service';
   styleUrls: ['./cocktail-detail.component.scss'],
 })
 export class CocktailDetailComponent implements OnInit {
-  cocktail = new Cocktail();
-  private id = '';
+  cocktail!: Cocktail;
 
   constructor(
     private route: ActivatedRoute,
@@ -18,10 +17,8 @@ export class CocktailDetailComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe((params) => {
-      this.id = params['id'];
-    });
-    console.log(this.id);
-    console.log(this.cocktailService.getCocktailDetails(this.id));
+    const routeParams = this.route.snapshot.paramMap;
+    const cocktailId = Number(routeParams.get('id'));
+    this.cocktail = this.cocktailService.getCocktailDetails(`${cocktailId}`);
   }
 }
