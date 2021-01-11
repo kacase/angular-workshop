@@ -22,6 +22,8 @@ export class CocktailService {
 
   private baseListUrl : string = this.apiUrl + 'list.php?';
 
+  private baseRandomUrl : string = this.apiUrl + 'random.php';
+
   constructor(private http: HttpClient) {}
 
   private getDrinksByIngredientRaw(ingredient: string): Observable<Drinks> {
@@ -56,7 +58,10 @@ export class CocktailService {
     return this.http.get<Drinks>(this.baseListUrl + 'g=list', { responseType: 'json' });
   }
 
-  
+  private getRandomDrinkRaw(): Observable<Drinks> {
+    return this.http.get<Drinks>(this.baseRandomUrl, { responseType: 'json' });
+  }
+
 
 
   getDrinksByIngredient(ingredient: string) : Cocktail[] {
@@ -103,6 +108,17 @@ export class CocktailService {
   getCocktailDetails(id: string) : Cocktail {
     let cocktail: Cocktail = new Cocktail();
     this.getCocktailDetailsRaw(id).subscribe((drinks) => {
+      var c : ApiCocktail = drinks.drinks[0];
+      cocktail.id = c.idDrink;
+      cocktail.title = c.strDrink;
+    });
+    return cocktail;
+  }
+
+  // TODO Threre's a mapping required here between ApiCocktail and Cocktail
+  getRandomDrink() : Cocktail {
+    let cocktail: Cocktail = new Cocktail();
+    this.getRandomDrinkRaw().subscribe((drinks) => {
       var c : ApiCocktail = drinks.drinks[0];
       cocktail.id = c.idDrink;
       cocktail.title = c.strDrink;
