@@ -1,8 +1,13 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, Injectable, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import {
+  Component,
+  EventEmitter,
+  Injectable,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { map, startWith } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-ingredient-filter',
@@ -10,6 +15,7 @@ import { map, startWith } from 'rxjs/operators';
   styleUrls: ['./ingredient-filter.component.scss'],
 })
 export class IngredientFilterComponent implements OnInit {
+  @Output() alcChanged = new EventEmitter<string>();
   ingredientFilter: string = '';
   currentIngredient = '';
   ingredients: Observable<any> | undefined;
@@ -17,6 +23,10 @@ export class IngredientFilterComponent implements OnInit {
   constructor(private service: Service) {}
 
   ngOnInit(): void {}
+
+  onValChange(value: string) {
+    this.alcChanged.emit(value);
+  }
 
   doFilter() {
     this.ingredients = this.service

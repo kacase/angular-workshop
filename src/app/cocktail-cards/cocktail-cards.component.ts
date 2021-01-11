@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import Cocktail from 'src/models/Cocktail';
-import { CocktailService } from '../services/cocktail.service';
+import { DefaultCocktailsService } from '../services/default-cocktails.service';
 
 @Component({
   selector: 'app-cocktail-cards',
@@ -8,14 +8,11 @@ import { CocktailService } from '../services/cocktail.service';
   styleUrls: ['./cocktail-cards.component.scss'],
 })
 export class CocktailCardsComponent implements OnInit {
-  cocktails: Cocktail[];
+  cocktails!: Cocktail[];
 
-  constructor(
-    private cocktailService: CocktailService
-  ) {
-    this.cocktails = [];
-  }
+  constructor(private defaultCocktailsService: DefaultCocktailsService) {}
 
   ngOnInit(): void {
+    this.cocktails = this.defaultCocktailsService.getCocktails();
   }
 }

@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import {
+  Router,
+  ActivatedRoute,
+  ParamMap,
+  NavigationStart,
+} from '@angular/router';
 import Cocktail from 'src/models/Cocktail';
 import { CocktailService } from '../services/cocktail.service';
 
@@ -17,8 +22,8 @@ export class CocktailDetailComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const routeParams = this.route.snapshot.paramMap;
-    const cocktailId = Number(routeParams.get('id'));
-    this.cocktail = this.cocktailService.getCocktailDetails(`${cocktailId}`);
+    this.route.params.subscribe((params) => {
+      this.cocktail = this.cocktailService.getCocktailDetails(params.id);
+    });
   }
 }
