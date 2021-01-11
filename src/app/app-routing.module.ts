@@ -5,7 +5,8 @@ import { CocktailDetailComponent } from './cocktail-detail/cocktail-detail.compo
 
 const routes: Routes = [
   { path: '', component: CocktailCardsComponent },
-  { path: 'details', component: CocktailDetailComponent },
+  { path: 'details/:id', component: CocktailDetailComponent },
+  { path: '**', component: CocktailCardsComponent },
 ];
 
 @NgModule({

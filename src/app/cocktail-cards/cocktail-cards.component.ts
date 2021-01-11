@@ -26,7 +26,9 @@ export class CocktailCardsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.cocktails = this.cocktailService.getDrinksByName('long island');
+    for (let i = 0; i < 4; i++) {
+      this.cocktails.push(this.cocktailService.getRandomDrink());
+    }
   }
 
   doFilter() {
