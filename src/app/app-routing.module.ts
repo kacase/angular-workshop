@@ -4,8 +4,8 @@ import { CocktailCardsComponent } from './cocktail-cards/cocktail-cards.componen
 import { CocktailDetailComponent } from './cocktail-detail/cocktail-detail.component';
 
 const routes: Routes = [
-  { path: '', component: CocktailCardsComponent },
-  { path: 'details', component: CocktailDetailComponent },
+  { path: '', component: CocktailCardsComponent, data: { animation:'Home' } },
+  { path: 'details', component: CocktailDetailComponent, data: { animation:'Details' } },
 ];
 
 @NgModule({

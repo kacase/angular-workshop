@@ -1,9 +1,10 @@
 <div class="flex">
   <div class="spacing-left"></div>
-  <div class="main-content">
-    <app-cocktail-card [cocktail]="cocktails[0]"></app-cocktail-card>
-    <app-cocktail-card [cocktail]="cocktails[1]"></app-cocktail-card>
-    <app-cocktail-card [cocktail]="cocktails[2]"></app-cocktail-card>
+  <button mat-raised-button (click)="add_cocktail()" class="button">Add cocktail</button>
+  <div *ngFor='let cocktail of cocktails' [@flyInOut]="'in'" >
+    <app-cocktail-card [cocktail]="cocktail"></app-cocktail-card>
+    <button mat-raised-button (click)="remove_cocktail(cocktail)" class="button">Remove cocktail</button>
   </div>
+  
   <div class="spacing-right"></div>
 </div>
