@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
 import Cocktail from 'src/models/Cocktail';
 import { CocktailService } from '../services/cocktail.service';
 import { card_animation } from '../animations/animations';
@@ -9,24 +10,19 @@ import { card_animation } from '../animations/animations';
   styleUrls: ['./cocktail-cards.component.scss'],
   animations: [card_animation()],
 })
-export class CocktailCardsComponent implements OnInit {
-  cocktails: Cocktail[];
+export class CocktailCardsComponent implements OnInit, OnDestroy {
+  cocktails: Cocktail[] = [];
+  private sub?: Subscription;
+  searchTerm = '';
+
   constructor(private cocktailService: CocktailService) {
-    this.cocktails = [];
+    this.sub = cocktailService
+      .getRandomDrink()
+      .subscribe((cocktail) => this.cocktails.push(cocktail));
+  }
+  ngOnDestroy(): void {
+    this.sub?.unsubscribe();
   }
 
-  ngOnInit(): void {
-    this.cocktails = this.cocktailService.getCocktails();
-  }
-
-  remove_cocktail(cocktail: Cocktail) {
-    let index = this.cocktails.indexOf(cocktail);
-    if (index > -1) {
-      this.cocktails.splice(index, 1)
-      }
-    console.log(this.cocktails)
-  }
-  add_cocktail(){
-    this.cocktails.push(this.cocktails[0])
-  }
+  ngOnInit(): void {}
 }

@@ -5,7 +5,8 @@ import { CocktailDetailComponent } from './cocktail-detail/cocktail-detail.compo
 
 const routes: Routes = [
   { path: '', component: CocktailCardsComponent, data: { animation:'Home' } },
-  { path: 'details', component: CocktailDetailComponent, data: { animation:'Details' } },
+  { path: 'details/:id', component: CocktailDetailComponent, data: { animation:'Details' } },
+  { path: '**', component: CocktailCardsComponent, data: { animation:'Home' } },
 ];
 
 @NgModule({

@@ -1,10 +1,17 @@
 @import "~@angular/material/theming";
 
 .sidenav {
-  padding: 20px;
 }
 
 .toolbar-container {
   position: relative;
   z-index: -1;
+}
+
+.container {
+  height: calc(100% - 60px);
+}
+
+.toolbar {
+  min-height: 200px;
 }

@@ -1,7 +1,10 @@
 <mat-card class="cocktail-card mat-elevation-z4">
   <mat-card-header>
-    <div mat-card-avatar class="cocktail-header-image"></div>
-    <mat-card-title>{{ cocktail.title }}</mat-card-title>
+    <mat-card-title
+      ><a [routerLink]="['/details', cocktail.id]">{{
+        cocktail.title
+      }}</a></mat-card-title
+    >
     <mat-card-subtitle>{{ cocktail.category }}</mat-card-subtitle>
   </mat-card-header>
   <img mat-card-image [src]="cocktail.img" alt="Image of a Cocktail" />
@@ -11,7 +14,8 @@
     </p>
   </mat-card-content>
   <mat-card-actions>
-    <button mat-raised-button color="primary" [routerLink]="['/details']">LIKE</button>
-    <button mat-raised-button color="primary">SHARE</button>
+    <a [routerLink]="['/details', cocktail.id]">
+      <button mat-raised-button color="primary">Show details</button>
+    </a>
   </mat-card-actions>
 </mat-card>

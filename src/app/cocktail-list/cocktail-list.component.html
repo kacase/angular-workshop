@@ -1,3 +1,32 @@
-<div *ngFor="let cocktail of cocktails" class="sidenav-content">
-  <app-cocktail-list-detail [cocktail]="cocktail"></app-cocktail-list-detail>
+<div class="sidenav-content">
+  <mat-toolbar class="toolbar"
+    ><app-ingredient-filter
+      (alcChanged)="filterAlcChanged($event)"
+      (ingredientChanged)="filterIngredientChanged($event)"
+    ></app-ingredient-filter
+  ></mat-toolbar>
+  <mat-nav-list>
+    <mat-list-item
+      *ngFor="
+        let cocktail of cocktails.slice(
+          curSize * curIndex,
+          (curIndex + 1) * curSize
+        )
+      "
+      [routerLink]="['/details', cocktail.id]"
+    >
+      <h3 matLine>{{ cocktail.title }}</h3>
+      <p matLine>
+        <span> {{ cocktail.instructions }} </span>
+      </p>
+    </mat-list-item>
+  </mat-nav-list>
+  <mat-paginator
+    #paginator
+    [length]="cocktails.length"
+    [pageSize]="pageSize"
+    [pageSizeOptions]="[5, 10, 20]"
+    (page)="displayPage($event)"
+  >
+  </mat-paginator>
 </div>

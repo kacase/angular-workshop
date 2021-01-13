@@ -10,22 +10,18 @@ import { CocktailService } from './services/cocktail.service';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  animations: [
-    slideInAnimation
-  ]
+  animations: [slideInAnimation],
 })
 export class AppComponent implements OnInit {
-  cocktails: Cocktail[] = [];
   showFiller = false;
   @ViewChild('sidenav') public sidenav!: MatSidenav;
-  constructor(private cocktailService: CocktailService) {}
+  constructor() {}
 
-  ngOnInit(): void {
-    this.cocktails = this.cocktailService.getCocktails();
-  }
+  ngOnInit(): void {}
 
   prepareRoute(outlet: RouterOutlet) {
-    return outlet && outlet.activatedRouteData && outlet.activatedRouteData.animation;
+    return (
+      outlet && outlet.activatedRouteData && outlet.activatedRouteData.animation
+    );
   }
-
 }

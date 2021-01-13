@@ -1,10 +1,28 @@
-<div class="flex">
-  <div class="spacing-left"></div>
-  <button mat-raised-button (click)="add_cocktail()" class="button">Add cocktail</button>
-  <div *ngFor='let cocktail of cocktails' [@flyInOut]="'in'" >
-    <app-cocktail-card [cocktail]="cocktail"></app-cocktail-card>
-    <button mat-raised-button (click)="remove_cocktail(cocktail)" class="button">Remove cocktail</button>
-  </div>
-  
-  <div class="spacing-right"></div>
+<mat-toolbar class="toolbar">
+  <div class="max-grow"></div>
+  <mat-form-field appearance="outline" class="search-form">
+    <mat-label>Search</mat-label>
+    <input matInput type="text" [(ngModel)]="searchTerm" />
+    <button
+      mat-button
+      *ngIf="searchTerm"
+      matSuffix
+      mat-icon-button
+      aria-label="Clear"
+      (click)="searchTerm = ''"
+    >
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+  <button mat-icon-button><mat-icon>search</mat-icon></button>
+  <div class="max-grow"></div>
+</mat-toolbar>
+
+<div class="main-content">
+  <app-cocktail-card
+    class="cocktail-card"
+    [cocktail]="cocktail"
+    *ngFor="let cocktail of cocktails"
+    [@flyInOut]="'in'"
+  ></app-cocktail-card>
 </div>

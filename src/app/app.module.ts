@@ -6,13 +6,14 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { CocktailCardComponent } from './cocktail-cards/cocktail-card/cocktail-card.component';
 import { CocktailListComponent } from './cocktail-list/cocktail-list.component';
-import { CocktailListDetailComponent } from './cocktail-list/cocktail-list-detail/cocktail-list-detail.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppMaterialModule } from './app-material/app-material.module';
 
 import { HttpClientModule } from '@angular/common/http';
 import { CocktailDetailComponent } from './cocktail-detail/cocktail-detail.component';
 import { CocktailCardsComponent } from './cocktail-cards/cocktail-cards.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { IngredientFilterComponent } from './cocktail-list/ingredient-filter/ingredient-filter.component';
 
 @NgModule({
   declarations: [
@@ -20,16 +21,18 @@ import { CocktailCardsComponent } from './cocktail-cards/cocktail-cards.componen
     HeaderComponent,
     CocktailCardComponent,
     CocktailListComponent,
-    CocktailListDetailComponent,
     CocktailDetailComponent,
-    CocktailCardsComponent
+    CocktailCardsComponent,
+    IngredientFilterComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     AppMaterialModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
