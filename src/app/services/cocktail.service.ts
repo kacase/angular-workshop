@@ -131,7 +131,7 @@ export class CocktailService {
   }
 
   // TODO Threre's a mapping required here between ApiCocktail and Cocktail
-  getRandomDrink(): Observable<Cocktail> {
+  getRandomCocktails(): Observable<Cocktail> {
     let obs: Observable<Drinks>[] = [];
     for (let i = 0; i < 12; i++) {
       obs.push(this.getRandomDrinkRaw());

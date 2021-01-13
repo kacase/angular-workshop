@@ -15,7 +15,7 @@ export class CocktailCardsComponent implements OnInit, OnDestroy {
 
   constructor(private cocktailService: CocktailService) {
     this.sub = cocktailService
-      .getRandomDrink()
+      .getRandomCocktails()
       .subscribe((cocktail) => this.cocktails.push(cocktail));
   }
   ngOnDestroy(): void {
