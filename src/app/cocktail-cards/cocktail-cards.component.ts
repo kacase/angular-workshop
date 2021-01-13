@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import Cocktail from 'src/models/Cocktail';
 import { CocktailService } from '../services/cocktail.service';
 
@@ -11,6 +11,7 @@ import { CocktailService } from '../services/cocktail.service';
 export class CocktailCardsComponent implements OnInit, OnDestroy {
   cocktails: Cocktail[] = [];
   private sub?: Subscription;
+  searchTerm = '';
 
   constructor(private cocktailService: CocktailService) {
     this.sub = cocktailService
