@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { merge, Observable, zip } from 'rxjs';
 
 import { Drinks } from '../../models/drinks.model';
 import Cocktail from 'src/models/Cocktail';
 import { ApiCocktail } from 'src/models/ApiCocktail';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -130,15 +131,13 @@ export class CocktailService {
   }
 
   // TODO Threre's a mapping required here between ApiCocktail and Cocktail
-  getRandomDrink(): Cocktail {
-    let cocktail: Cocktail = new Cocktail();
-    this.getRandomDrinkRaw().subscribe((drinks) => {
-      var c: ApiCocktail = drinks.drinks[0];
-      cocktail.id = c.idDrink;
-      cocktail.title = c.strDrink;
-      cocktail.img = c.strDrinkThumb;
-    });
-    return cocktail;
+  getRandomDrink(): Observable<Cocktail> {
+    let obs: Observable<Drinks>[] = [];
+    for (let i = 0; i < 12; i++) {
+      obs.push(this.getRandomDrinkRaw());
+    }
+    const merged = merge(...obs);
+    return merged.pipe(map((drink) => new Cocktail(drink.drinks[0])));
   }
 
   getIngridients(): string[] {

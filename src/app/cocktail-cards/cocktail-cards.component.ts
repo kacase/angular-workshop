@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import Cocktail from 'src/models/Cocktail';
-import { DefaultCocktailsService } from '../services/default-cocktails.service';
+import { CocktailService } from '../services/cocktail.service';
 
 @Component({
   selector: 'app-cocktail-cards',
@@ -8,11 +9,13 @@ import { DefaultCocktailsService } from '../services/default-cocktails.service';
   styleUrls: ['./cocktail-cards.component.scss'],
 })
 export class CocktailCardsComponent implements OnInit {
-  cocktails!: Cocktail[];
+  cocktails: Cocktail[] = [];
 
-  constructor(private defaultCocktailsService: DefaultCocktailsService) {}
-
-  ngOnInit(): void {
-    this.cocktails = this.defaultCocktailsService.getCocktails();
+  constructor(private cocktailService: CocktailService) {
+    cocktailService
+      .getRandomDrink()
+      .subscribe((cocktail) => this.cocktails.push(cocktail));
   }
+
+  ngOnInit(): void {}
 }
