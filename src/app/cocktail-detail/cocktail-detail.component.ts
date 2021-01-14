@@ -1,10 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  Router,
-  ActivatedRoute,
-  ParamMap,
-  NavigationStart,
-} from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 import Cocktail from 'src/models/Cocktail';
 import { CocktailService } from '../services/cocktail.service';
 
@@ -14,7 +10,8 @@ import { CocktailService } from '../services/cocktail.service';
   styleUrls: ['./cocktail-detail.component.scss'],
 })
 export class CocktailDetailComponent implements OnInit {
-  cocktail!: Cocktail;
+  cocktail = new Cocktail();
+  private sub?: Subscription;
 
   constructor(
     private route: ActivatedRoute,
@@ -23,7 +20,10 @@ export class CocktailDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
-      this.cocktail = this.cocktailService.getCocktailDetails(params.id);
+      this.sub?.unsubscribe();
+      this.sub = this.cocktailService
+        .getCocktailDetails(params.id)
+        .subscribe((cocktail) => (this.cocktail = cocktail));
     });
   }
 }

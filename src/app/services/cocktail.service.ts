@@ -118,19 +118,12 @@ export class CocktailService {
     return cocktails;
   }
 
-  // TODO Threre's a mapping required here between ApiCocktail and Cocktail
-  getCocktailDetails(id: string): Cocktail {
-    let cocktail: Cocktail = new Cocktail();
-    this.getCocktailDetailsRaw(id).subscribe((drinks) => {
-      var c: ApiCocktail = drinks.drinks[0];
-      cocktail.id = c.idDrink;
-      cocktail.title = c.strDrink;
-      cocktail.img = c.strDrinkThumb;
-    });
-    return cocktail;
+  getCocktailDetails(id: string): Observable<Cocktail> {
+    return this.getCocktailDetailsRaw(id).pipe(
+      map((drink) => new Cocktail(drink.drinks[0]))
+    );
   }
 
-  // TODO Threre's a mapping required here between ApiCocktail and Cocktail
   getRandomCocktails(): Observable<Cocktail> {
     let obs: Observable<Drinks>[] = [];
     for (let i = 0; i < 12; i++) {

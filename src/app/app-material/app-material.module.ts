@@ -10,6 +10,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatListModule } from '@angular/material/list';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatDividerModule } from '@angular/material/divider';
 
 @NgModule({
   declarations: [],
@@ -25,6 +26,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatAutocompleteModule,
     MatListModule,
     MatPaginatorModule,
+    MatDividerModule,
   ],
   exports: [
     MatToolbarModule,
@@ -37,6 +39,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatAutocompleteModule,
     MatListModule,
     MatPaginatorModule,
+    MatDividerModule,
   ],
 })
 export class AppMaterialModule {}

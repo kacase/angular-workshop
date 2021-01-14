@@ -9,18 +9,29 @@
 </mat-toolbar>
 
 <div class="cocktail-detail">
-  <div class="img-flex">
-    <img
-      mat-card-image
-      [src]="cocktail.img"
-      alt="Image of a Cocktail"
-      class="cocktail-img"
-    />
-    <ul>
-      <li *ngFor="let ingredient of cocktail.ingredients">{{ ingredient }}</li>
-    </ul>
+  <div class="box">
+    <div class="img-flex">
+      <img
+        mat-card-image
+        [src]="cocktail.img"
+        alt="Image of a Cocktail"
+        class="cocktail-img"
+      />
+      <mat-list class="ingredient-list">
+        <mat-list-item
+          *ngFor="let ingredient of cocktail.ingredients; last as last"
+        >
+          {{ ingredient }}
+          <mat-divider *ngIf="!last"></mat-divider>
+        </mat-list-item>
+      </mat-list>
+    </div>
+    <div class="instructions">
+      <p>{{ cocktail.instructions }}</p>
+    </div>
   </div>
-  <br />
-  <p>{{ cocktail.instructions }}</p>
-  <button mat-raised-button color="primary" [routerLink]="['/']">Overview</button>
+
+  <button mat-raised-button color="primary" [routerLink]="['/']">
+    Overview
+  </button>
 </div>
