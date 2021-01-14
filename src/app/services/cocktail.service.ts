@@ -110,12 +110,16 @@ export class CocktailService {
     return cocktails;
   }
 
-  getDrinksByName(name: string): Cocktail[] {
-    let cocktails: Cocktail[] = [];
-    this.getDrinksByNameRaw(name).subscribe((drinks) => {
-      drinks.drinks.map((c) => cocktails.push(new Cocktail(c)));
-    });
-    return cocktails;
+  getDrinksByName(name: string): Observable<Cocktail[]> {
+    return this.getDrinksByNameRaw(name).pipe(
+      map((drinks) => drinks.drinks.map((drink) => new Cocktail(drink)))
+    );
+
+    // let cocktails: Cocktail[] = [];
+    // this.getDrinksByNameRaw(name).subscribe((drinks) => {
+    //   drinks.drinks.map((c) => cocktails.push(new Cocktail(c)));
+    // });
+    // return cocktails;
   }
 
   getCocktailDetails(id: string): Observable<Cocktail> {

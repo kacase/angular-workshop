@@ -2,7 +2,12 @@
   <div class="max-grow"></div>
   <mat-form-field appearance="outline" class="search-form">
     <mat-label>Search</mat-label>
-    <input matInput type="text" [(ngModel)]="searchTerm" />
+    <input
+      matInput
+      type="text"
+      [(ngModel)]="searchTerm"
+      (keyup.enter)="submit()"
+    />
     <button
       mat-button
       *ngIf="searchTerm"
@@ -14,7 +19,9 @@
       <mat-icon>close</mat-icon>
     </button>
   </mat-form-field>
-  <button mat-icon-button><mat-icon>search</mat-icon></button>
+  <button mat-icon-button (click)="submit()">
+    <mat-icon>search</mat-icon>
+  </button>
   <div class="max-grow"></div>
 </mat-toolbar>
 

@@ -1,9 +1,12 @@
 .sidenav-content {
   width: 400px;
+  max-width: 80vw;
 }
 
 .toolbar {
   min-height: 100px;
+  justify-content: space-evenly;
+  align-items: flex-end;
 }
 
 a {

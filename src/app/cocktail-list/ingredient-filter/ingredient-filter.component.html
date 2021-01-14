@@ -1,15 +1,18 @@
 <div class="toolbar-content">
   <mat-button-toggle-group value="alcoholic">
-    <mat-button-toggle (change)="onValChange($event.value)" value="alcoholic"
+    <mat-button-toggle
+      (change)="onValChange($event.value)"
+      value="alcoholic"
+      title="Show alcoholic cocktails only"
       ><mat-icon>local_bar</mat-icon></mat-button-toggle
     >
     <mat-button-toggle
+      title="Show non-alcoholic cocktails only"
       (change)="onValChange($event.value)"
       value="non-alcoholic"
       ><mat-icon>no_drinks</mat-icon></mat-button-toggle
     >
   </mat-button-toggle-group>
-
   <mat-form-field appearance="outline" class="search-form">
     <mat-label>Ingredient</mat-label>
     <input

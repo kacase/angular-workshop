@@ -13,6 +13,7 @@ import { card_animation } from '../animations/animations';
 export class CocktailCardsComponent implements OnInit, OnDestroy {
   cocktails: Cocktail[] = [];
   private sub?: Subscription;
+  private cocktailNameSub?: Subscription;
   searchTerm = '';
 
   constructor(private cocktailService: CocktailService) {
@@ -22,6 +23,26 @@ export class CocktailCardsComponent implements OnInit, OnDestroy {
   }
   ngOnDestroy(): void {
     this.sub?.unsubscribe();
+    this.cocktailNameSub?.unsubscribe();
+  }
+
+  submit() {
+    if (this.searchTerm) {
+      this.cocktailNameSub?.unsubscribe();
+      this.cocktailNameSub = this.cocktailService
+        .getDrinksByName(this.searchTerm)
+        .subscribe((cocktails) => {
+          this.cocktails = cocktails;
+        });
+    } else {
+      this.sub?.unsubscribe();
+      this.cocktails = [];
+      this.sub = this.cocktailService
+        .getRandomCocktails()
+        .subscribe((cocktail) => {
+          this.cocktails.push(cocktail);
+        });
+    }
   }
 
   ngOnInit(): void {}
