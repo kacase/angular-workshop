@@ -113,6 +113,6 @@ class Cocktail {
 export default Cocktail;
 
 export interface ingredientMeasure {
-  ingredient: string | undefined,
-  measure: number |undefined
+  ingredient: string | undefined ,
+  measure: number
 }

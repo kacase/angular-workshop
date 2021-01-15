@@ -41,9 +41,9 @@
       <input
         matInput
         type="number"
-        [(ngModel)]="searchTerm"
+        [(ngModel)]="amountCocks"
         (keyup.enter)="submit()"
-        (ngModelChange)="amount()"
+        (change)="amount()"
       />
     
     </mat-form-field>
