@@ -20,8 +20,14 @@
       <mat-list class="ingredient-list">
         <mat-list-item
           *ngFor="let ingredient of cocktail.ingredients; last as last"
-        >
-          {{ ingredient }}
+        > 
+        <div *ngIf="ingredient.ingredient != undefined">
+          {{ ingredient.measure}}
+          {{ ingredient.ingredient }}
+
+
+        </div>
+          
           <mat-divider *ngIf="!last"></mat-divider>
         </mat-list-item>
       </mat-list>
@@ -29,9 +35,24 @@
     <div class="instructions">
       <p>{{ cocktail.instructions }}</p>
     </div>
+    <div>
+    <mat-form-field appearance="outline" class="search-form">
+      <mat-label>Amount Of Alcoholism</mat-label>
+      <input
+        matInput
+        type="number"
+        [(ngModel)]="searchTerm"
+        (keyup.enter)="submit()"
+        (ngModelChange)="amount()"
+      />
+    
+    </mat-form-field>
+  </div>
   </div>
 
   <button mat-raised-button color="primary" [routerLink]="['/']">
     Overview
   </button>
+
+
 </div>
