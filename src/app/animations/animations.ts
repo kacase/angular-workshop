@@ -56,7 +56,7 @@ export const slider = trigger('routeAnimations', [
   ]),
 ]);
 
-export function list_animation() {
+/* export function list_animation() {
   return trigger('list_animation', [
     transition('void => *', [
       query(
@@ -86,4 +86,4 @@ export function list_animation() {
       ),
     ]),
   ]);
-}
+} */
