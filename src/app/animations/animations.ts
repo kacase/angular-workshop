@@ -23,10 +23,23 @@ export function card_animation() {
   ]);
 }
 
-export const slideInAnimation = trigger('routeAnimations', [
-  transition('Home <=> Details', [
-    style({ position: 'relative' }),
-    /** Common ground for all html elements */
+export const slider = trigger('routeAnimations', [
+  transition(':increment', [
+    query(':enter, :leave', [
+      style({
+        position: 'absolute',
+        top: 0,
+        right: 0,
+        width: '100%',
+      }),
+    ]),
+    query(':enter', [style({ right: '-100%' })]),
+    group([
+      query(':leave', [animate('600ms ease', style({ right: '100%' }))]),
+      query(':enter', [animate('600ms ease', style({ right: '0%' }))]),
+    ]),
+  ]),
+  transition(':decrement', [
     query(':enter, :leave', [
       style({
         position: 'absolute',
@@ -35,15 +48,42 @@ export const slideInAnimation = trigger('routeAnimations', [
         width: '100%',
       }),
     ]),
-    /**place element to enter so far left it is unseen */
     query(':enter', [style({ left: '-100%' })]),
-    /**animate the child animations */
-    query(':leave', animateChild()),
     group([
-      query(':leave', [animate('1s ease-out', style({ left: '100%' }))]),
-      query(':enter', [animate('1s ease-out', style({ left: '0%' }))]),
+      query(':leave', [animate('600ms ease', style({ left: '100%' }))]),
+      query(':enter', [animate('600ms ease', style({ left: '0%' }))]),
     ]),
-    /**animate the child animations */
-    query(':enter', animateChild()),
   ]),
 ]);
+
+export function list_animation() {
+  return trigger('list_animation', [
+    transition('void => *', [
+      query(
+        ':enter',
+        [
+          style({ opacity: 0, transform: 'translateX(200px)' }),
+          stagger(1000, [
+            animate('1s', style({ opacity: 1, transform: 'None' })),
+          ]),
+        ],
+        { optional: true }
+      ),
+    ]),
+    transition('* => void', [
+      query(
+        ':leave',
+        [
+          style({ opacity: 1, transform: 'None' }),
+          stagger(1000, [
+            animate(
+              '0.5s',
+              style({ opacity: 0, transform: 'translateX(-200px)' })
+            ),
+          ]),
+        ],
+        { optional: true }
+      ),
+    ]),
+  ]);
+}

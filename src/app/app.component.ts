@@ -3,14 +3,14 @@ import { Component } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { RouterOutlet } from '@angular/router';
 import Cocktail from 'src/models/Cocktail';
-import { slideInAnimation } from './animations/animations';
+import { slider } from './animations/animations';
 import { CocktailService } from './services/cocktail.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  animations: [slideInAnimation],
+  animations: [slider],
 })
 export class AppComponent implements OnInit {
   showFiller = false;
@@ -20,8 +20,6 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {}
 
   prepareRoute(outlet: RouterOutlet) {
-    return (
-      outlet && outlet.activatedRouteData && outlet.activatedRouteData.animation
-    );
+    return outlet.activatedRouteData.animation;
   }
 }
