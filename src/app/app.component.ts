@@ -22,4 +22,7 @@ export class AppComponent implements OnInit {
   prepareRoute(outlet: RouterOutlet) {
     return outlet.activatedRouteData.animation;
   }
+  onActivate(event: Event) {
+    document.querySelector('h1')?.scrollTo(0,0)
+  }
 }
