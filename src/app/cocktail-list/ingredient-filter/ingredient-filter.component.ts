@@ -25,7 +25,7 @@ export class IngredientFilterComponent implements OnInit {
   constructor(private cocktailService: CocktailService) {}
 
   ngOnInit(): void {
-    this.allIngredients = this.cocktailService.getIngridients();
+    this.allIngredients = this.cocktailService.getIngredients();
   }
 
   onValChange(value: string) {
