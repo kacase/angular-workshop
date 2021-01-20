@@ -83,34 +83,33 @@ export class CocktailService {
       else return new Cocktail();
   }
   private unpackCocktails(d: Drinks): Cocktail[] {
-    let cocktails: Cocktail[] = [];
-    if (d && d.drinks && d.drinks.length > 0) d.drinks.map((c) => cocktails.push(new Cocktail(c)));
+    if (d && d.drinks && d.drinks.length > 0) return d.drinks.map(drink => new Cocktail(drink));
     else return [];
-    return cocktails;
   }
 
-  getDrinksByIngredient(ingredient: string): Cocktail[] {
-    let cocktails: Cocktail[] = [];
-    this.getDrinksByIngredientRaw(ingredient).subscribe(d => cocktails = this.unpackCocktails(d));
-    return cocktails;
+
+  getDrinksByIngredient(ingredient: string): Observable<Cocktail[]> {
+    return this.getDrinksByIngredientRaw(ingredient).pipe(
+      map((drinks) => this.unpackCocktails(drinks))
+    );
   }
 
-  getDrinksByAlcoholic(alcoholic: boolean): Cocktail[] {
-    let cocktails: Cocktail[] = [];
-    this.getDrinksByAlcoholicRaw(alcoholic).subscribe(d => cocktails = this.unpackCocktails(d));
-    return cocktails;
+  getDrinksByAlcoholic(alcoholic: boolean): Observable<Cocktail[]> {
+    return this.getDrinksByAlcoholicRaw(alcoholic).pipe(
+      map((drinks) => this.unpackCocktails(drinks))
+    );
   }
 
-  getDrinksByCategory(category: string): Cocktail[] {
-    let cocktails: Cocktail[] = [];
-    this.getDrinksByCategoryRaw(category).subscribe(d => cocktails = this.unpackCocktails(d));
-    return cocktails;
+  getDrinksByCategory(category: string): Observable<Cocktail[]> {
+    return this.getDrinksByCategoryRaw(category).pipe(
+      map((drinks) => this.unpackCocktails(drinks))
+    );
   }
 
-  getDrinksByGlass(glass: string): Cocktail[] {
-    let cocktails: Cocktail[] = [];
-    this.getDrinksByGlassRaw(glass).subscribe(d => cocktails = this.unpackCocktails(d));
-    return cocktails;
+  getDrinksByGlass(glass: string): Observable<Cocktail[]> {
+    return this.getDrinksByGlassRaw(glass).pipe(
+      map((drinks) => this.unpackCocktails(drinks))
+    );
   }
 
   getDrinksByName(name: string): Observable<Cocktail[]> {
