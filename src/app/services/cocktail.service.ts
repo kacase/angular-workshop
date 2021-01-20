@@ -78,35 +78,38 @@ export class CocktailService {
     return this.http.get<Drinks>(this.baseRandomUrl, { responseType: 'json' });
   }
 
+  private unpackCocktail(d: Drinks): Cocktail {
+      if (d && d.drinks && d.drinks.length > 0) return new Cocktail(d.drinks[0]);
+      else return new Cocktail();
+  }
+  private unpackCocktails(d: Drinks): Cocktail[] {
+    let cocktails: Cocktail[] = [];
+    if (d && d.drinks && d.drinks.length > 0) d.drinks.map((c) => cocktails.push(new Cocktail(c)));
+    else return [];
+    return cocktails;
+  }
+
   getDrinksByIngredient(ingredient: string): Cocktail[] {
     let cocktails: Cocktail[] = [];
-    this.getDrinksByIngredientRaw(ingredient).subscribe((drinks) => {
-      drinks.drinks.map((c) => cocktails.push(new Cocktail(c)));
-    });
+    this.getDrinksByIngredientRaw(ingredient).subscribe(d => cocktails = this.unpackCocktails(d));
     return cocktails;
   }
 
   getDrinksByAlcoholic(alcoholic: boolean): Cocktail[] {
     let cocktails: Cocktail[] = [];
-    this.getDrinksByAlcoholicRaw(alcoholic).subscribe((drinks) => {
-      drinks.drinks.map((c) => cocktails.push(new Cocktail(c)));
-    });
+    this.getDrinksByAlcoholicRaw(alcoholic).subscribe(d => cocktails = this.unpackCocktails(d));
     return cocktails;
   }
 
   getDrinksByCategory(category: string): Cocktail[] {
     let cocktails: Cocktail[] = [];
-    this.getDrinksByCategoryRaw(category).subscribe((drinks) => {
-      drinks.drinks.map((c) => cocktails.push(new Cocktail(c)));
-    });
+    this.getDrinksByCategoryRaw(category).subscribe(d => cocktails = this.unpackCocktails(d));
     return cocktails;
   }
 
   getDrinksByGlass(glass: string): Cocktail[] {
     let cocktails: Cocktail[] = [];
-    this.getDrinksByGlassRaw(glass).subscribe((drinks) => {
-      drinks.drinks.map((c) => cocktails.push(new Cocktail(c)));
-    });
+    this.getDrinksByGlassRaw(glass).subscribe(d => cocktails = this.unpackCocktails(d));
     return cocktails;
   }
 
@@ -124,7 +127,7 @@ export class CocktailService {
 
   getCocktailDetails(id: string): Observable<Cocktail> {
     return this.getCocktailDetailsRaw(id).pipe(
-      map((drink) => new Cocktail(drink.drinks[0]))
+      map(d => this.unpackCocktail(d))
     );
   }
 
@@ -134,15 +137,16 @@ export class CocktailService {
       obs.push(this.getRandomDrinkRaw());
     }
     const merged = merge(...obs);
-    return merged.pipe(map((drink) => new Cocktail(drink.drinks[0])));
+    return merged.pipe(map(d => this.unpackCocktail(d))
+    )
   }
 
-  getIngridients(): string[] {
-    let ingridients: string[] = [];
+  getIngredients(): string[] {
+    let ingredients: string[] = [];
     this.getIngredientsRaw().subscribe((drinks) => {
-      drinks.drinks.map((c) => ingridients.push(c.strIngredient1));
+      drinks.drinks.map((c) => ingredients.push(c.strIngredient1));
     });
-    return ingridients;
+    return ingredients;
   }
 
   getCategories(): string[] {
@@ -170,9 +174,7 @@ export class CocktailService {
   }
   getCocktails(): Cocktail[] {
     let cocktails: Cocktail[] = [];
-    this.getCocktailsRaw().subscribe((drinks) => {
-      drinks.drinks.map((c) => cocktails.push(new Cocktail(c)));
-    });
+    this.getCocktailsRaw().subscribe(d => cocktails = this.unpackCocktails(d));
     return cocktails;
   }
 }
