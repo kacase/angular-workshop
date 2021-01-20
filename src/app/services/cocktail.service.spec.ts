@@ -1,32 +1,30 @@
-// import { TestBed } from '@angular/core/testing';
-// import Cocktail from 'src/models/Cocktail';
 
-// import { CocktailService } from './cocktail.service';
+import { CocktailService } from './cocktail.service';
+import Cocktail from 'src/models/Cocktail';
+import { of } from 'rxjs';
 
-// // describe('CocktailService', () => {
-// //   let service: CocktailService;
+let httpClientSpy: { get: jasmine.Spy };
+let cocktailService: CocktailService;
 
-// //   beforeEach(() => {
-// //     TestBed.configureTestingModule({});
-// //     service = TestBed.inject(CocktailService);
-// //   });
+beforeEach(() => {
+  // TODO: spy on other methods too
+  httpClientSpy = jasmine.createSpyObj('HttpClient', ['get']);
+  cocktailService = new CocktailService(httpClientSpy as any);
+});
 
-// //   it('should be created', () => {
-// //     expect(service).toBeTruthy();
-// //   });
-// // });
+it('should return expected cocktail (HttpClient called once)', () => {
+  const expectedCocktail: Cocktail = new Cocktail();
+  console.log('test cocktail', expectedCocktail);
 
-// describe('CocktailService', () => {
-//   let service: CocktailService;
+  httpClientSpy.get.and.returnValue(of(expectedCocktail));
 
-//   beforeEach(() => {
-//     TestBed.configureTestingModule({});
-//     service = TestBed.inject(CocktailService);
-//   });
+  cocktailService.getCocktailDetails('12089').subscribe(
 
-//   it('#getValue should return real value', () => {
-//     expect(service.getCategories()).toBe('Ordinary Drink, Cocktail');
-//   });
-// });
-
-
+    cocktail => {
+      console.log('cocktail from api', cocktail);
+      expect(cocktail).toEqual(expectedCocktail, 'expected cocktail')
+    },
+    fail
+  );
+  expect(httpClientSpy.get.calls.count()).toBe(1, 'one call');
+});
