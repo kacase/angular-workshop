@@ -12,7 +12,9 @@ import { CocktailService } from '../services/cocktail.service';
 export class CocktailDetailComponent implements OnInit {
   cocktail = new Cocktail();
   private sub?: Subscription;
-  amountCocks = 5;
+  amountCocks = 1;
+  previousAmount = 1;
+  sumMeasures = 0;
 
   constructor(
     private route: ActivatedRoute,
@@ -24,15 +26,33 @@ export class CocktailDetailComponent implements OnInit {
       this.sub?.unsubscribe();
       this.sub = this.cocktailService
         .getCocktailDetails(params.id)
-        .subscribe((cocktail) => (this.cocktail = cocktail));
+        .subscribe((cocktail) => {
+          (this.cocktail = cocktail);
+          this.sumMeasures = this.oz();
+        });
     });
+    
   }
   amount(): Cocktail {
     console.log(this.cocktail);
     var timo = [];
-    timo = this.cocktail?.ingredients.map((ingredient) => ingredient.measure = ingredient.measure *this.amountCocks)
-    return this.cocktail;
-    
+    timo = this.cocktail?.ingredients.map((ingredient) =>  {
+      if (this.amountCocks != 0) ingredient.measure = ingredient.measure / this.previousAmount;
+    })
+    timo = this.cocktail?.ingredients.map((ingredient) =>  {
+      if (this.amountCocks != 0) ingredient.measure = ingredient.measure *this.amountCocks;
+    })
+    this.previousAmount = this.amountCocks;
+    this.sumMeasures = this.oz();
+    return this.cocktail;    
+  }
+  oz(): number{
+    this.sumMeasures = this.cocktail?.ingredients.reduce(function (accumulator, currentValue) {
+      if (currentValue.measure) return accumulator + currentValue.measure; else return accumulator;
+    }, 0 );
+    console.log(this.sumMeasures);
+
+   return this.sumMeasures; 
   }
 }
 

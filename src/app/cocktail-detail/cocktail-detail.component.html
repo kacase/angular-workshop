@@ -24,16 +24,20 @@
         <div *ngIf="ingredient.ingredient != undefined">
           {{ ingredient.measure}}
           {{ ingredient.ingredient }}
-
+          {{ 100* ingredient.measure/sumMeasures}} %
+          <mat-divider *ngIf="!last"></mat-divider>
+        
 
         </div>
           
-          <mat-divider *ngIf="!last"></mat-divider>
         </mat-list-item>
       </mat-list>
     </div>
     <div class="instructions">
       <p>{{ cocktail.instructions }}</p>
+    </div>
+    <div class="measures">
+      <p>{{ sumMeasures}}</p>
     </div>
     <div>
     <mat-form-field appearance="outline" class="search-form">
