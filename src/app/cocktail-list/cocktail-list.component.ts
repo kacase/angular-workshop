@@ -11,7 +11,7 @@ import { MatPaginator, PageEvent } from '@angular/material/paginator';
 export class CocktailListComponent implements OnInit {
   @ViewChild('paginator') paginator!: MatPaginator;
   alcoholic = 'alcoholic';
-  cocktails!: Cocktail[];
+  cocktails: Cocktail[] = [];
   pageEvent!: PageEvent;
   pageSize = 10;
   curIndex = 0;
@@ -25,24 +25,20 @@ export class CocktailListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.cocktails = this.cocktailService.getDrinksByAlcoholic(
-      this.alcoholic === 'alcoholic'
-    );
+    this.cocktailService.getDrinksByAlcoholic(this.alcoholic === 'alcoholic').subscribe(c => this.cocktails = c)
   }
 
   filterAlcChanged(event: string) {
     this.alcoholic = event;
-    this.cocktails = this.cocktailService.getDrinksByAlcoholic(
-      event === 'alcoholic'
-    );
+    this.cocktailService.getDrinksByAlcoholic(event === 'alcoholic').subscribe(c => this.cocktails = c)
   }
 
   filterIngredientChanged(event: string) {
     this.paginator.firstPage();
     event !== ''
-      ? (this.cocktails = this.cocktailService.getDrinksByIngredient(event))
-      : (this.cocktails = this.cocktailService.getDrinksByAlcoholic(
+      ? (this.cocktailService.getDrinksByIngredient(event).subscribe(c => this.cocktails = c))
+      : (this.cocktailService.getDrinksByAlcoholic(
           this.alcoholic === 'alcoholic'
-        ));
+        ).subscribe(c => this.cocktails = c));
   }
 }
