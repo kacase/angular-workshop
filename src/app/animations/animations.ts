@@ -12,14 +12,7 @@ import {
 
 export function card_animation() {
   return trigger('flyInOut', [
-    state('in', style({ transform: 'translateX(0)', opacity: 1 })),
-    transition('void =>*', [
-      style({ transform: 'rotateY(-70deg)', opacity: 0 }),
-      animate(1000, style({ transform: 'rotateY(0deg)', opacity: 1 })),
-    ]),
-    transition('* => void', [
-      animate(1000, style({ transform: 'rotateY(-70deg)', opacity: 0 })),
-    ]),
+    /**You Code should go into these brackets, you do not need to connect it the component, taht has already been done for you */
   ]);
 }
 
