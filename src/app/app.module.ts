@@ -14,6 +14,7 @@ import { CocktailDetailComponent } from './cocktail-detail/cocktail-detail.compo
 import { CocktailCardsComponent } from './cocktail-cards/cocktail-cards.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IngredientFilterComponent } from './cocktail-list/ingredient-filter/ingredient-filter.component';
+import { UnitPipe } from './cocktail-detail/unit.pipe';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { IngredientFilterComponent } from './cocktail-list/ingredient-filter/ing
     CocktailDetailComponent,
     CocktailCardsComponent,
     IngredientFilterComponent,
+    UnitPipe,
   ],
   imports: [
     BrowserModule,

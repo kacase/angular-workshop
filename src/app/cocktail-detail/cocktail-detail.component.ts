@@ -12,8 +12,8 @@ import { CocktailService } from '../services/cocktail.service';
 export class CocktailDetailComponent implements OnInit {
   cocktail = new Cocktail();
   private sub?: Subscription;
-  amountCocks = 1;
-  previousAmount = 1;
+  amountCocktails = 1;
+  previousAmount = this.amountCocktails;
   sumMeasures = 0;
 
   constructor(
@@ -27,32 +27,26 @@ export class CocktailDetailComponent implements OnInit {
       this.sub = this.cocktailService
         .getCocktailDetails(params.id)
         .subscribe((cocktail) => {
-          (this.cocktail = cocktail);
-          this.sumMeasures = this.oz();
+          this.cocktail = cocktail;
         });
     });
-    
   }
-  amount(): Cocktail {
-    console.log(this.cocktail);
-    var timo = [];
-    timo = this.cocktail?.ingredients.map((ingredient) =>  {
-      if (this.amountCocks != 0) ingredient.measure = ingredient.measure / this.previousAmount;
-    })
-    timo = this.cocktail?.ingredients.map((ingredient) =>  {
-      if (this.amountCocks != 0) ingredient.measure = ingredient.measure *this.amountCocks;
-    })
-    this.previousAmount = this.amountCocks;
-    this.sumMeasures = this.oz();
-    return this.cocktail;    
-  }
-  oz(): number{
-    this.sumMeasures = this.cocktail?.ingredients.reduce(function (accumulator, currentValue) {
-      if (currentValue.measure) return accumulator + currentValue.measure; else return accumulator;
-    }, 0 );
-    console.log(this.sumMeasures);
+  /**
+   * Changes the amount of ingredient based on the input value
+   */
+  amount(): void {
+    // Reject Values that make no sense
+    if (this.amountCocktails <= 0 || this.amountCocktails > 100) {
+      alert(
+        `This is a serious app and does not support the making of ${this.amountCocktails} cocktails. \nPlease enter a more reasonable number. Thank you.`
+      );
+      return;
+    }
+    //TODO: Use the array operator map on the array "this.cocktail.ingredients" to change the amount of ingredients, based on "this.amountCocktails".
+    //Optional: Consider how to change the ingredient.measure value 
 
-   return this.sumMeasures; 
+    this.cocktail.ingredients = ingredients;
+
+    this.previousAmount = this.amountCocktails;
   }
 }
-
