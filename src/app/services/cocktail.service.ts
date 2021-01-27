@@ -26,27 +26,21 @@ export class CocktailService {
 
   constructor(private http: HttpClient) {}
 
+
+
   private getDrinksByIngredientRaw(ingredient: string): Observable<Drinks> {
     return this.http.get<Drinks>(this.baseFilterUrl + 'i=' + ingredient, {
       responseType: 'json',
     });
   }
+
   private getDrinksByAlcoholicRaw(alcoholic: boolean): Observable<Drinks> {
     var alc: string = alcoholic ? 'Alcoholic' : 'Non_Alcoholic';
     return this.http.get<Drinks>(this.baseFilterUrl + 'a=' + alc, {
       responseType: 'json',
     });
   }
-  private getDrinksByCategoryRaw(category: string): Observable<Drinks> {
-    return this.http.get<Drinks>(this.baseFilterUrl + 'c=' + category, {
-      responseType: 'json',
-    });
-  }
-  private getDrinksByGlassRaw(glass: string): Observable<Drinks> {
-    return this.http.get<Drinks>(this.baseFilterUrl + 'g=' + glass, {
-      responseType: 'json',
-    });
-  }
+
 
   private getDrinksByNameRaw(name: string): Observable<Drinks> {
     return this.http.get<Drinks>(this.baseSearchUrl + 's=' + name, {
@@ -63,16 +57,7 @@ export class CocktailService {
       responseType: 'json',
     });
   }
-  private getCategoriesRaw(): Observable<Drinks> {
-    return this.http.get<Drinks>(this.baseListUrl + 'c=list', {
-      responseType: 'json',
-    });
-  }
-  private getGlassesRaw(): Observable<Drinks> {
-    return this.http.get<Drinks>(this.baseListUrl + 'g=list', {
-      responseType: 'json',
-    });
-  }
+
 
   private getRandomDrinkRaw(): Observable<Drinks> {
     return this.http.get<Drinks>(this.baseRandomUrl, { responseType: 'json' });
@@ -100,28 +85,12 @@ export class CocktailService {
     );
   }
 
-  getDrinksByCategory(category: string): Observable<Cocktail[]> {
-    return this.getDrinksByCategoryRaw(category).pipe(
-      map((drinks) => this.unpackCocktails(drinks))
-    );
-  }
-
-  getDrinksByGlass(glass: string): Observable<Cocktail[]> {
-    return this.getDrinksByGlassRaw(glass).pipe(
-      map((drinks) => this.unpackCocktails(drinks))
-    );
-  }
 
   getDrinksByName(name: string): Observable<Cocktail[]> {
     return this.getDrinksByNameRaw(name).pipe(
       map((drinks) => drinks.drinks.map((drink) => new Cocktail(drink)))
     );
 
-    // let cocktails: Cocktail[] = [];
-    // this.getDrinksByNameRaw(name).subscribe((drinks) => {
-    //   drinks.drinks.map((c) => cocktails.push(new Cocktail(c)));
-    // });
-    // return cocktails;
   }
 
   getCocktailDetails(id: string): Observable<Cocktail> {
@@ -148,32 +117,5 @@ export class CocktailService {
     return ingredients;
   }
 
-  getCategories(): string[] {
-    let categories: string[] = [];
-    this.getCategoriesRaw().subscribe((drinks) => {
-      drinks.drinks.map((c) => categories.push(c.strCategory));
-    });
-    return categories;
-  }
 
-  getGlasses(): string[] {
-    let glasses: string[] = [];
-    this.getGlassesRaw().subscribe((drinks) => {
-      drinks.drinks.map((c) => glasses.push(c.strGlass));
-    });
-    return glasses;
-  }
-
-  // --- REMOVE ---
-
-  private getCocktailsRaw(): Observable<Drinks> {
-    return this.http.get<Drinks>(this.baseSearchUrl + 's=' + 'margarita', {
-      responseType: 'json',
-    });
-  }
-  getCocktails(): Cocktail[] {
-    let cocktails: Cocktail[] = [];
-    this.getCocktailsRaw().subscribe(d => cocktails = this.unpackCocktails(d));
-    return cocktails;
-  }
 }
