@@ -54,6 +54,8 @@ export class CocktailDetailComponent implements OnInit {
       };
     });
 
+    this.cocktail.ingredients = ingredients;
+
     this.previousAmount = this.amountCocktails;
   }
 }
