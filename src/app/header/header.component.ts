@@ -15,5 +15,5 @@ export class HeaderComponent implements OnInit {
 
   toggleSideNav = () => {
     this.nav.toggle();
-  };
+  }
 }

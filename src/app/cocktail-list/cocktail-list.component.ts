@@ -25,12 +25,12 @@ export class CocktailListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.cocktailService.getDrinksByAlcoholic(this.alcoholic === 'alcoholic').subscribe(c => this.cocktails = c)
+    this.cocktailService.getDrinksByAlcoholic(this.alcoholic === 'alcoholic').subscribe(c => this.cocktails = c);
   }
 
   filterAlcChanged(event: string) {
     this.alcoholic = event;
-    this.cocktailService.getDrinksByAlcoholic(event === 'alcoholic').subscribe(c => this.cocktails = c)
+    this.cocktailService.getDrinksByAlcoholic(event === 'alcoholic').subscribe(c => this.cocktails = c);
   }
 
   filterIngredientChanged(event: string) {

@@ -1,5 +1,5 @@
-import { ApiCocktail } from './ApiCocktail'
+import { ApiCocktail } from './ApiCocktail';
 
 export interface Drinks {
-    drinks: ApiCocktail[]
+    drinks: ApiCocktail[];
 }

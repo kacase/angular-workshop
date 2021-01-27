@@ -1,5 +1,5 @@
 // Other imports
-import Cocktail from 'src/models/Cocktail';
+import Cocktail from '../../models/Cocktail';
 import { CocktailService } from './cocktail.service';
 import { of } from 'rxjs';
 
@@ -26,7 +26,7 @@ describe('HttpClient testing', () => {
     cocktailService.getCocktailDetails('12089').subscribe(
 
       cocktail => {
-        expect(cocktail).toEqual(expectedCocktail, 'expected cocktail')
+        expect(cocktail).toEqual(expectedCocktail, 'expected cocktail');
       },
       fail
     );
