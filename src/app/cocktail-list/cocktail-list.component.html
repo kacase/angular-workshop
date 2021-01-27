@@ -6,13 +6,11 @@
     ></app-ingredient-filter
   ></mat-toolbar>
   <mat-nav-list>
+    <!-- *** WS-TASK 1.4 *** -->
+    <!-- Array.prototype.slice() could be helpful for Pagination to display only the necessarry number of cocktails per page-->
+    <!-- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice -->
     <mat-list-item
-      *ngFor="
-        let cocktail of cocktails.slice(
-          curSize * curIndex,
-          (curIndex + 1) * curSize
-        )
-      "
+      *ngFor="let cocktail of cocktails"
       [routerLink]="['/details', cocktail.id]"
     >
       <h3 matLine>{{ cocktail.title }}</h3>
@@ -20,13 +18,9 @@
         <span> {{ cocktail.instructions }} </span>
       </p>
     </mat-list-item>
+
+    <!-- Insert Paginator below Cocktail items-->
+
+    <!-- END of Task -->
   </mat-nav-list>
-  <mat-paginator
-    #paginator
-    [length]="cocktails.length"
-    [pageSize]="pageSize"
-    [pageSizeOptions]="[5, 10, 20]"
-    (page)="displayPage($event)"
-  >
-  </mat-paginator>
 </div>
