@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import Cocktail, { ingredientMeasure } from 'src/models/Cocktail';
+import { ingredientMeasure } from '../../models/Cocktail';
 
 @Pipe({
   name: 'unit',
