@@ -45,7 +45,6 @@ export class CocktailDetailComponent implements OnInit {
     //TODO: Use the array operator map on the array "this.cocktail.ingredients" to change the amount of ingredients, based on "this.amountCocktails".
     //Optional: Consider how to change the ingredient.measure value 
 
-    this.cocktail.ingredients = ingredients;
 
     this.previousAmount = this.amountCocktails;
   }
