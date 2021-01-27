@@ -16,7 +16,7 @@ export class CocktailListComponent implements OnInit {
   /*
   ---- Could be useful for Pagination ----
   pageEvent!: PageEvent;
-  pageSize = 10;
+  pageSizeOptions = [5, 10, 25];
   curIndex = 0;
   curSize = 10;
 

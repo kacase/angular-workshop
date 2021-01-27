@@ -7,8 +7,19 @@
   ></mat-toolbar>
   <mat-nav-list>
     <!-- *** WS-TASK 1.4 *** -->
-    <!-- Array.prototype.slice() could be helpful for Pagination to display only the necessarry number of cocktails per page-->
-    <!-- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice -->
+    <!-- 
+      Having all Cocktails as one long list is a bad idea. How about some Pagination?
+      
+      Hint: Take a look at cocktail-list.component.ts for some helpful variables and remember to trigger displayPage on Page Changes 
+      (it will update the index of the page you're currently on and the number of elements displayed on the current Page 
+      -> use these variables together with the next hint )
+
+      Another Hint:
+      cocktails.slice() could be helpful for Pagination to display only the necessarry number of cocktails per page
+      https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice
+    
+      Another Hint: Include '#paginator' as a template reference variable in the paginator element (Otherwise the ingredient filter won't work)
+    -->
     <mat-list-item
       *ngFor="let cocktail of cocktails"
       [routerLink]="['/details', cocktail.id]"
@@ -18,8 +29,7 @@
         <span> {{ cocktail.instructions }} </span>
       </p>
     </mat-list-item>
-
-    <!-- Insert Paginator below Cocktail items-->
+    <!-- Insert the Paginator here to display it below the list items -->
 
     <!-- END of Task -->
   </mat-nav-list>
