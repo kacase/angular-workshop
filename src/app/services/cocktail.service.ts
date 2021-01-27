@@ -1,18 +1,17 @@
 import { Injectable } from '@angular/core';
 
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { merge, Observable, zip } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { merge, Observable } from 'rxjs';
 
 import { Drinks } from '../../models/drinks.model';
-import Cocktail from 'src/models/Cocktail';
-import { ApiCocktail } from 'src/models/ApiCocktail';
+import Cocktail from '../../models/Cocktail';
 import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CocktailService {
-  private apiUrl: string = 'https://www.thecocktaildb.com/api/json/v1/1/';
+  private apiUrl = 'https://www.thecocktaildb.com/api/json/v1/1/';
 
   private baseFilterUrl: string = this.apiUrl + 'filter.php?';
 
@@ -35,7 +34,7 @@ export class CocktailService {
   }
 
   private getDrinksByAlcoholicRaw(alcoholic: boolean): Observable<Drinks> {
-    var alc: string = alcoholic ? 'Alcoholic' : 'Non_Alcoholic';
+    const alc: string = alcoholic ? 'Alcoholic' : 'Non_Alcoholic';
     return this.http.get<Drinks>(this.baseFilterUrl + 'a=' + alc, {
       responseType: 'json',
     });
@@ -64,12 +63,12 @@ export class CocktailService {
   }
 
   private unpackCocktail(d: Drinks): Cocktail {
-      if (d && d.drinks && d.drinks.length > 0) return new Cocktail(d.drinks[0]);
-      else return new Cocktail();
+      if (d && d.drinks && d.drinks.length > 0) { return new Cocktail(d.drinks[0]); }
+      else { return new Cocktail(); }
   }
   private unpackCocktails(d: Drinks): Cocktail[] {
-    if (d && d.drinks && d.drinks.length > 0) return d.drinks.map(drink => new Cocktail(drink));
-    else return [];
+    if (d && d.drinks && d.drinks.length > 0) { return d.drinks.map(drink => new Cocktail(drink)); }
+    else { return []; }
   }
 
 
@@ -100,17 +99,17 @@ export class CocktailService {
   }
 
   getRandomCocktails(): Observable<Cocktail> {
-    let obs: Observable<Drinks>[] = [];
+    const obs: Observable<Drinks>[] = [];
     for (let i = 0; i < 12; i++) {
       obs.push(this.getRandomDrinkRaw());
     }
     const merged = merge(...obs);
     return merged.pipe(map(d => this.unpackCocktail(d))
-    )
+    );
   }
 
   getIngredients(): string[] {
-    let ingredients: string[] = [];
+    const ingredients: string[] = [];
     this.getIngredientsRaw().subscribe((drinks) => {
       drinks.drinks.map((c) => ingredients.push(c.strIngredient1));
     });

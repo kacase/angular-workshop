@@ -19,7 +19,7 @@ class Cocktail {
       'Stir powdered sugar, water, and bitters in an old-fashioned glass.\n' +
         'When sugar has dissolved add ice cubes and light rum. Add the twist of lime peel, float 151 proof rum on top, and serve.';
 
-    var ingredientList: ingredientMeasure[] = [];
+    const ingredientList: ingredientMeasure[] = [];
     if (apiCocktail && apiCocktail.strIngredient1 && apiCocktail.strMeasure1) {
       ingredientList.push(
         getIngredientMeasure(
@@ -218,8 +218,8 @@ export interface ingredientMeasure {
 function getNumFromFrac(str: string) {
   const fracReg = /([0-9])\/([0-9])/g;
   const frac = [...str.matchAll(fracReg)];
-  let nom = Number(frac[0][1]);
-  let denom = Number(frac[0][2]);
+  const nom = Number(frac[0][1]);
+  const denom = Number(frac[0][2]);
   return nom / denom;
 }
 
@@ -227,8 +227,9 @@ function getIngredientMeasure(
   ingredient: string,
   measure: string
 ): ingredientMeasure {
-  if (!measure)
-    return { prefix: '', ingredient: ingredient, measure: 0, unit: '' };
+  if (!measure) {
+    return { prefix: '', ingredient, measure: 0, unit: '' };
+  }
   const regex = /^([a-zA-Z\s]*)([0-9]\/[0-9])?\s?([0-9]+)?\s?([0-9]\/[0-9])?\s?([a-zA-Z]+)?/g;
   const arr = [...measure.matchAll(regex)];
   let num = 0;
@@ -244,7 +245,7 @@ function getIngredientMeasure(
   }
   return {
     prefix: arr[0][1] || '',
-    ingredient: ingredient,
+    ingredient,
     measure: num,
     unit: arr[0][5] || '',
   };

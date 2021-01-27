@@ -5,8 +5,6 @@ import {
   animate,
   query,
   state,
-  stagger,
-  animateChild,
   group,
 } from '@angular/animations';
 
@@ -55,35 +53,3 @@ export const slider = trigger('routeAnimations', [
     ]),
   ]),
 ]);
-
-/* export function list_animation() {
-  return trigger('list_animation', [
-    transition('void => *', [
-      query(
-        ':enter',
-        [
-          style({ opacity: 0, transform: 'translateX(200px)' }),
-          stagger(1000, [
-            animate('1s', style({ opacity: 1, transform: 'None' })),
-          ]),
-        ],
-        { optional: true }
-      ),
-    ]),
-    transition('* => void', [
-      query(
-        ':leave',
-        [
-          style({ opacity: 1, transform: 'None' }),
-          stagger(1000, [
-            animate(
-              '0.5s',
-              style({ opacity: 0, transform: 'translateX(-200px)' })
-            ),
-          ]),
-        ],
-        { optional: true }
-      ),
-    ]),
-  ]);
-} */
