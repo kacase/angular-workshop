@@ -12,8 +12,8 @@ import { CocktailService } from '../services/cocktail.service';
 export class CocktailDetailComponent implements OnInit {
   cocktail = new Cocktail();
   private sub?: Subscription;
-  numberCocktails = 1;
-  previousAmount = this.numberCocktails;
+  amountCocktails = 1;
+  previousAmount = this.amountCocktails;
   sumMeasures = 0;
 
   constructor(
@@ -36,23 +36,17 @@ export class CocktailDetailComponent implements OnInit {
    */
   amount(): void {
     // Reject Values that make no sense
-    if (this.numberCocktails <= 0 || this.numberCocktails > 100) {
+    if (this.amountCocktails <= 0 || this.amountCocktails > 100) {
       alert(
-        `This is a serious app and does not support the making of ${this.numberCocktails} cocktails. \nPlease enter a more reasonable number. Thank you.`
+        `This is a serious app and does not support the making of ${this.amountCocktails} cocktails. \nPlease enter a more reasonable number. Thank you.`
       );
       return;
     }
-    let ingredients = this.cocktail.ingredients.map((ingredient) => {
-      return {
-        prefix: ingredient.prefix,
-        ingredient: ingredient.ingredient,
-        measure:
-          (ingredient.measure / this.previousAmount) * this.numberCocktails,
-        unit: ingredient.unit,
-      };
-    });
+    //TODO: Use the array operator map on the array "this.cocktail.ingredients" to change the amount of ingredients, based on "this.amountCocktails".
+    //Optional: Consider how to change the ingredient.measure value 
+
     this.cocktail.ingredients = ingredients;
 
-    this.previousAmount = this.numberCocktails;
+    this.previousAmount = this.amountCocktails;
   }
 }

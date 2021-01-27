@@ -1,5 +1,1 @@
-import { ApiCocktail } from './ApiCocktail'
-
-export interface Drinks {
-    drinks: ApiCocktail[]
-}
+// TODO create a model for the API call
