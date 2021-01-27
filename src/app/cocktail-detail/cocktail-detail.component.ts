@@ -53,7 +53,6 @@ export class CocktailDetailComponent implements OnInit {
         unit: ingredient.unit,
       };
     });
-    this.cocktail.ingredients = ingredients;
 
     this.previousAmount = this.amountCocktails;
   }
