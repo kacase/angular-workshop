@@ -31,13 +31,19 @@ export class CocktailDetailComponent implements OnInit {
         });
     });
   }
+  /**
+   * Changes the amount of ingredient based on the input value
+   */
   amount(): void {
+    // Reject Values that make no sense
     if (this.amountCocktails <= 0 || this.amountCocktails > 100) {
       alert(
         `This is a serious app and does not support the making of ${this.amountCocktails} cocktails. \nPlease enter a more reasonable number. Thank you.`
       );
       return;
     }
+    //TODO: Use the array operator map on the array "this.cocktail.ingredients" to change the amount of ingredients, based on "this.amountCocktails".
+    //Optional: Consider how to change the ingredient.measure value 
     let ingredients = this.cocktail.ingredients.map((ingredient) => {
       return {
         prefix: ingredient.prefix,
