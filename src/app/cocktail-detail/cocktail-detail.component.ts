@@ -40,6 +40,7 @@ export class CocktailDetailComponent implements OnInit {
     }
     let ingredients = this.cocktail.ingredients.map((ingredient) => {
       return {
+        prefix: ingredient.prefix,
         ingredient: ingredient.ingredient,
         measure:
           (ingredient.measure / this.previousAmount) * this.amountCocktails,

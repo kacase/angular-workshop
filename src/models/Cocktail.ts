@@ -209,6 +209,7 @@ class Cocktail {
 export default Cocktail;
 
 export interface ingredientMeasure {
+  prefix: string;
   ingredient: string | undefined;
   measure: number;
   unit: string | undefined;
@@ -226,19 +227,25 @@ function getIngredientMeasure(
   ingredient: string,
   measure: string
 ): ingredientMeasure {
-  if (!measure) return { ingredient: ingredient, measure: 0, unit: '' };
-  const regex = /^[a-zA-Z]*\s?([0-9]\/[0-9])?\s?([0-9]+)?\s?([0-9]\/[0-9])?\s?([a-zA-Z]+)?/g;
+  if (!measure)
+    return { prefix: '', ingredient: ingredient, measure: 0, unit: '' };
+  const regex = /^([a-zA-Z\s]*)([0-9]\/[0-9])?\s?([0-9]+)?\s?([0-9]\/[0-9])?\s?([a-zA-Z]+)?/g;
   const arr = [...measure.matchAll(regex)];
   let num = 0;
-  const unit = arr[0][4];
-  if (arr[0][1]) {
-    num = getNumFromFrac(arr[0][1]);
-  }
+  const unit = arr[0][5];
   if (arr[0][2]) {
-    num += Number(arr[0][2]);
+    num = getNumFromFrac(arr[0][2]);
   }
   if (arr[0][3]) {
-    num += getNumFromFrac(arr[0][3]);
+    num += Number(arr[0][3]);
   }
-  return { ingredient: ingredient, measure: num, unit: arr[0][4] };
+  if (arr[0][4]) {
+    num += getNumFromFrac(arr[0][4]);
+  }
+  return {
+    prefix: arr[0][1] || '',
+    ingredient: ingredient,
+    measure: num,
+    unit: arr[0][5] || '',
+  };
 }

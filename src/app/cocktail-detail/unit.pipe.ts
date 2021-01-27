@@ -6,8 +6,12 @@ import Cocktail, { ingredientMeasure } from 'src/models/Cocktail';
 })
 export class UnitPipe implements PipeTransform {
   transform(ingredient: ingredientMeasure): string {
-    console.log('ingredient', ingredient);
     let result = '';
+
+    if (ingredient.prefix) {
+      result += ingredient.prefix;
+    }
+
     if (ingredient.measure != 0) {
       result += Math.round((ingredient.measure + Number.EPSILON) * 100) / 100;
     }
