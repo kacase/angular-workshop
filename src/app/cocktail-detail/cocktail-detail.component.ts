@@ -1,7 +1,7 @@
 import { Component, OnInit, Testability } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
-import Cocktail from 'src/models/Cocktail';
+import Cocktail, { ingredientMeasure }  from '../../models/Cocktail';
 import { CocktailService } from '../services/cocktail.service';
 
 @Component({

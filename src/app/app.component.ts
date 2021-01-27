@@ -2,9 +2,7 @@ import { OnInit, ViewChild } from '@angular/core';
 import { Component } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { RouterOutlet } from '@angular/router';
-import Cocktail from 'src/models/Cocktail';
 import { slider } from './animations/animations';
-import { CocktailService } from './services/cocktail.service';
 
 @Component({
   selector: 'app-root',
@@ -23,6 +21,6 @@ export class AppComponent implements OnInit {
     return outlet.activatedRouteData.animation;
   }
   onActivate(event: Event) {
-    document.querySelector('h1')?.scrollTo(0,0)
+    document.querySelector('h1')?.scrollTo(0, 0);
   }
 }
