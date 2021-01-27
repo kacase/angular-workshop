@@ -20,42 +20,35 @@
       <mat-list class="ingredient-list">
         <mat-list-item
           *ngFor="let ingredient of cocktail.ingredients; last as last"
-        > 
-        <div *ngIf="ingredient.ingredient != undefined">
-          {{ ingredient.measure}}
-          {{ ingredient.ingredient }}
-          {{ 100* ingredient.measure/sumMeasures}} %
-          <mat-divider *ngIf="!last"></mat-divider>
-        
-
-        </div>
-          
+        >
+          <div>
+            {{ ingredient | unit }}
+            <mat-divider *ngIf="!last"></mat-divider>
+          </div>
         </mat-list-item>
       </mat-list>
     </div>
     <div class="instructions">
       <p>{{ cocktail.instructions }}</p>
     </div>
-    <div class="measures">
-      <p>{{ sumMeasures}}</p>
-    </div>
-    <div>
-    <mat-form-field appearance="outline" class="search-form">
-      <mat-label>Amount Of Alcoholism</mat-label>
+    <mat-form-field appearance="outline" class="num-cocktails">
+      <mat-label>Number Of Cocktails</mat-label>
       <input
         matInput
+        min="1"
         type="number"
-        [(ngModel)]="amountCocks"
+        [(ngModel)]="amountCocktails"
         (change)="amount()"
       />
-    
     </mat-form-field>
   </div>
-  </div>
 
-  <button mat-raised-button color="primary" [routerLink]="['/']">
+  <button
+    mat-raised-button
+    color="primary"
+    [routerLink]="['/']"
+    class="overview-button"
+  >
     Overview
   </button>
-
-
 </div>
