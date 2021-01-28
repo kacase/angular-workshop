@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
-import Cocktail from 'src/models/Cocktail';
+import Cocktail from '../../models/Cocktail';
 import { CocktailService } from '../services/cocktail.service';
 import { card_animation } from '../animations/animations';
 
@@ -19,7 +19,7 @@ export class CocktailCardsComponent implements OnInit, OnDestroy {
   constructor(private cocktailService: CocktailService) {
     this.sub = cocktailService
       .getRandomCocktails()
-      .subscribe((cocktail) => this.cocktails.push(cocktail));
+      .subscribe((cocktail: Cocktail) => this.cocktails.push(cocktail));
   }
   ngOnDestroy(): void {
     this.sub?.unsubscribe();
@@ -31,7 +31,7 @@ export class CocktailCardsComponent implements OnInit, OnDestroy {
       this.cocktailNameSub?.unsubscribe();
       this.cocktailNameSub = this.cocktailService
         .getDrinksByName(this.searchTerm)
-        .subscribe((cocktails) => {
+        .subscribe((cocktails: Cocktail[]) => {
           this.cocktails = cocktails;
         });
     } else {
@@ -39,7 +39,7 @@ export class CocktailCardsComponent implements OnInit, OnDestroy {
       this.cocktails = [];
       this.sub = this.cocktailService
         .getRandomCocktails()
-        .subscribe((cocktail) => {
+        .subscribe((cocktail: Cocktail) => {
           this.cocktails.push(cocktail);
         });
     }

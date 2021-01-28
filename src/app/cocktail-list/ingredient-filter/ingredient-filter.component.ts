@@ -5,9 +5,7 @@ import {
   OnInit,
   Output,
 } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { CocktailService } from 'src/app/services/cocktail.service';
+import { CocktailService } from '../../services/cocktail.service';
 
 @Component({
   selector: 'app-ingredient-filter',
@@ -17,7 +15,7 @@ import { CocktailService } from 'src/app/services/cocktail.service';
 export class IngredientFilterComponent implements OnInit {
   @Output() alcChanged = new EventEmitter<string>();
   @Output() ingredientChanged = new EventEmitter<string>();
-  ingredientFilter: string = '';
+  ingredientFilter = '';
   currentIngredient = '';
   allIngredients!: string[];
   ingredients!: string[];
