@@ -2,23 +2,45 @@ import { Injectable } from '@angular/core';
 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { merge, Observable, zip } from 'rxjs';
-import { map } from 'rxjs/operators';
 
-// We have defined the API-specific models already, as well as the cocktail model for our app:
 import { Drinks } from '../../models/drinks.model';
 import Cocktail from 'src/models/Cocktail';
 import { ApiCocktail } from 'src/models/ApiCocktail';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CocktailService {
-  private apiUrl: string = 'https://www.thecocktaildb.com/api/json/v1/1/';
+  private apiUrl: string = 'https://www.thecocktaildb.com/api/json/v1/1/'; // we want to use this api for the below methods
 
-  // TODO You can define your own variables here
+  constructor(private http: HttpClient) {} // the httpclient can now be used as this.http.get(etc.)
 
-  constructor(private http: HttpClient) {}
+  getDrinksByIngredient(ingredient: string): Observable<Cocktail[]> {
+    return new Observable((observer) => observer.next([new Cocktail()]));
+  }
 
-  // TODO Write the necessary functions for HTTP requests and retrieving data here.
+  getDrinksByAlcoholic(alcoholic: boolean): Observable<Cocktail[]> {
+    return new Observable((observer) => observer.next([new Cocktail()]));
+  }
 
+  getDrinksByCategory(category: string): Observable<Cocktail[]> {
+    return new Observable((observer) => observer.next([new Cocktail()]));
+  }
+
+  getDrinksByName(name: string): Observable<Cocktail[]> {
+    return new Observable((observer) => observer.next([new Cocktail()]));
+  }
+
+  getCocktailDetails(id: string): Observable<Cocktail> {
+    return new Observable((observer) => observer.next(new Cocktail()));
+  }
+
+  getRandomCocktails(): Observable<Cocktail> {
+    return new Observable((observer) => observer.next(new Cocktail()));
+  }
+
+  getIngredients(): string[] {
+    return ["Light Rum", "Strong Rum"];
+  }
 }

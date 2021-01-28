@@ -1,1 +1,5 @@
-// TODO create a model for the API call
+import { ApiCocktail } from './ApiCocktail';
+
+export interface Drinks {
+    drinks: ApiCocktail[];
+}
