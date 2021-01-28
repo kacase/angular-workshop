@@ -13,7 +13,7 @@ class Cocktail {
     this.title = (apiCocktail && apiCocktail.strDrink) || 'Rum Old-Fashioned';
     this.category =
       (apiCocktail && apiCocktail.strCategory) || 'Ordinary Drink';
-    this.img = (apiCocktail && apiCocktail.strDrinkThumb) || '';
+    this.img = (apiCocktail && apiCocktail.strDrinkThumb) || 'https://www.thecocktaildb.com/images/media/drink/otn2011504820649.jpg';
     this.instructions =
       (apiCocktail && apiCocktail.strInstructions) ||
       'Stir powdered sugar, water, and bitters in an old-fashioned glass.\n' +
