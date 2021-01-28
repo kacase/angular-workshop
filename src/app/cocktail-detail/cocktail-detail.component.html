@@ -17,28 +17,32 @@
         alt="Image of a Cocktail"
         class="cocktail-img"
       />
-      <mat-list class="ingredient-list">
-        <mat-list-item
-          *ngFor="let ingredient of cocktail.ingredients; last as last"
-        >
+      <!-- *** WS-TASK 1.2 *** -->
+      <!-- Make list look pretty -->
+      <!-- Maybe a list divider could look nice as well? 
+           (But: List dividers should only placed *between* list items)-->
+      <ul class="ingredient-list">
+        <li *ngFor="let ingredient of cocktail.ingredients">
           {{ ingredient | unit }}
-          <mat-divider *ngIf="!last"></mat-divider>
-        </mat-list-item>
-      </mat-list>
+        </li>
+      </ul>
+      <!-- END of Task -->
     </div>
     <div class="instructions">
       <p>{{ cocktail.instructions }}</p>
     </div>
-    <mat-form-field appearance="outline" class="num-cocktails">
-      <mat-label>Number Of Cocktails</mat-label>
-      <input
-        matInput
-        min="1"
-        type="number"
-        [(ngModel)]="amountCocktails"
-        (change)="amount()"
-      />
-    </mat-form-field>
+    <!-- *** WS-TASK 1.3 *** -->
+    <!-- 
+      Insert a numerical input to calculate the right amount of ingredients for the desired number of cocktails
+      
+      Use 'numberCocktails' to store the number of cocktails desired
+      The calculations are already implemented by the 'amount()' method and should be triggered when the desired number of cocktails (change)s
+
+      Hint: This is a Angular Material exercise: A Form Field could help to make the input look prettier...
+      Another Hint: Should it really be possible to get the amount of ingredients for -10 cocktails or is there a way to prevent such crazy ideas?
+    -->
+
+    <!-- END of Task -->
   </div>
 
   <button

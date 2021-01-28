@@ -12,33 +12,42 @@ export class CocktailListComponent implements OnInit {
   @ViewChild('paginator') paginator!: MatPaginator;
   alcoholic = 'alcoholic';
   cocktails: Cocktail[] = [];
+
+  /*
+  ---- Could be useful for Pagination ----
   pageEvent!: PageEvent;
-  pageSize = 10;
+  pageSizeOptions = [5, 10, 25];
   curIndex = 0;
   curSize = 10;
-
-  constructor(private cocktailService: CocktailService) {}
 
   displayPage(event: PageEvent) {
     this.curIndex = event.pageIndex;
     this.curSize = event.pageSize;
-  }
+  }*/
+
+  constructor(private cocktailService: CocktailService) {}
 
   ngOnInit(): void {
-    this.cocktailService.getDrinksByAlcoholic(this.alcoholic === 'alcoholic').subscribe(c => this.cocktails = c);
+    this.cocktailService
+      .getDrinksByAlcoholic(this.alcoholic === 'alcoholic')
+      .subscribe((c) => (this.cocktails = c));
   }
 
   filterAlcChanged(event: string) {
     this.alcoholic = event;
-    this.cocktailService.getDrinksByAlcoholic(event === 'alcoholic').subscribe(c => this.cocktails = c);
+    this.cocktailService
+      .getDrinksByAlcoholic(event === 'alcoholic')
+      .subscribe((c) => (this.cocktails = c));
   }
 
   filterIngredientChanged(event: string) {
     this.paginator.firstPage();
     event !== ''
-      ? (this.cocktailService.getDrinksByIngredient(event).subscribe(c => this.cocktails = c))
-      : (this.cocktailService.getDrinksByAlcoholic(
-          this.alcoholic === 'alcoholic'
-        ).subscribe(c => this.cocktails = c));
+      ? this.cocktailService
+          .getDrinksByIngredient(event)
+          .subscribe((c) => (this.cocktails = c))
+      : this.cocktailService
+          .getDrinksByAlcoholic(this.alcoholic === 'alcoholic')
+          .subscribe((c) => (this.cocktails = c));
   }
 }
