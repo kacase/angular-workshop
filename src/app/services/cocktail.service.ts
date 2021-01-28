@@ -4,8 +4,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { merge, Observable, zip } from 'rxjs';
 
 import { Drinks } from '../../models/drinks.model';
-import Cocktail from 'src/models/Cocktail';
-import { ApiCocktail } from 'src/models/ApiCocktail';
+import Cocktail from '../../models/Cocktail';
+import { ApiCocktail } from '../../models/ApiCocktail';
 import { map } from 'rxjs/operators';
 
 @Injectable({
