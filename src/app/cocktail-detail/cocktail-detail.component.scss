@@ -10,13 +10,16 @@
 }
 
 .cocktail-img {
-  width: 404px;
-  height: 404px;
+  max-width: 404px;
+  max-height: 404px;
+  width: 100%;
 }
 
 .img-flex {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
 }
 
 .max-grow {
@@ -44,7 +47,7 @@ p {
 
 .ingredient-list {
   margin-left: 20px;
-  width: 100%;
+  flex-grow: 1;
 }
 
 .instructions {
