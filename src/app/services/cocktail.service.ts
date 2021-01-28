@@ -17,11 +17,19 @@ export class CocktailService {
   constructor(private http: HttpClient) {} // the httpclient can now be used as this.http.get(etc.)
 
   getDrinksByIngredient(ingredient: string): Observable<Cocktail[]> {
-    return new Observable((observer) => observer.next([new Cocktail()]));
+    return new Observable((observer) => {
+      let cocktails: Cocktail[] = [];
+      for (let i = 0; i < 100; i++) cocktails.push(new Cocktail());
+      observer.next(cocktails);
+    });
   }
 
   getDrinksByAlcoholic(alcoholic: boolean): Observable<Cocktail[]> {
-    return new Observable((observer) => observer.next([new Cocktail()]));
+    return new Observable((observer) => {
+      let cocktails: Cocktail[] = [];
+      for (let i = 0; i < 100; i++) cocktails.push(new Cocktail());
+      observer.next(cocktails);
+    });
   }
 
   getDrinksByCategory(category: string): Observable<Cocktail[]> {
@@ -29,7 +37,11 @@ export class CocktailService {
   }
 
   getDrinksByName(name: string): Observable<Cocktail[]> {
-    return new Observable((observer) => observer.next([new Cocktail()]));
+    return new Observable((observer) => {
+      let cocktails: Cocktail[] = [];
+      for (let i = 0; i < 12; i++) cocktails.push(new Cocktail());
+      observer.next(cocktails);
+    });
   }
 
   getCocktailDetails(id: string): Observable<Cocktail> {
@@ -37,10 +49,12 @@ export class CocktailService {
   }
 
   getRandomCocktails(): Observable<Cocktail> {
-    return new Observable((observer) => observer.next(new Cocktail()));
+    return new Observable((observer) => {
+      for (let i = 0; i < 12; i++) observer.next(new Cocktail());
+    });
   }
 
   getIngredients(): string[] {
-    return ["Light Rum", "Strong Rum"];
+    return ['Light Rum', 'Strong Rum'];
   }
 }

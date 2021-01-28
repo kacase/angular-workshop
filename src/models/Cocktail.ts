@@ -20,6 +20,13 @@ class Cocktail {
         'When sugar has dissolved add ice cubes and light rum. Add the twist of lime peel, float 151 proof rum on top, and serve.';
 
     const ingredientList: ingredientMeasure[] = [];
+    ingredientList.push(getIngredientMeasure('Light rum', '1 1/2 oz'));
+    ingredientList.push(getIngredientMeasure('151 proof rum', '1 tsp'));
+    ingredientList.push(getIngredientMeasure('Powdered sugar', '1/2 tsp'));
+    ingredientList.push(getIngredientMeasure('Bitters', '1 dash'));
+    ingredientList.push(getIngredientMeasure('Water', '1 tsp'));
+    ingredientList.push(getIngredientMeasure('Twist of Lime', ''));
+
     if (apiCocktail && apiCocktail.strIngredient1 && apiCocktail.strMeasure1) {
       ingredientList.push(
         getIngredientMeasure(
