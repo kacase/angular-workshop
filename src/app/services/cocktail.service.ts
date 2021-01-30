@@ -3,9 +3,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { merge, Observable, zip } from 'rxjs';
 
-import { Drinks } from '../../models/drinks.model';
+// import { Drinks } from '../../models/drinks.model';
 import Cocktail from '../../models/Cocktail';
-import { ApiCocktail } from '../../models/ApiCocktail';
+// import { ApiCocktail } from '../../models/ApiCocktail';
 import { map } from 'rxjs/operators';
 
 @Injectable({

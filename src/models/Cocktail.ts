@@ -27,187 +27,26 @@ class Cocktail {
     ingredientList.push(getIngredientMeasure('Water', '1 tsp'));
     ingredientList.push(getIngredientMeasure('Twist of Lime', ''));
 
-    if (apiCocktail && apiCocktail.strIngredient1 && apiCocktail.strMeasure1) {
-      ingredientList.push(
-        getIngredientMeasure(
-          apiCocktail.strIngredient1,
-          apiCocktail.strMeasure1
-        )
-      );
-    } else if (apiCocktail && apiCocktail.strIngredient1) {
-      ingredientList.push(getIngredientMeasure(apiCocktail.strIngredient1, ''));
-    }
 
-    if (apiCocktail && apiCocktail.strIngredient2 && apiCocktail.strMeasure2) {
-      ingredientList.push(
-        getIngredientMeasure(
-          apiCocktail.strIngredient2,
-          apiCocktail.strMeasure2
-        )
-      );
-    } else if (apiCocktail && apiCocktail.strIngredient2) {
-      ingredientList.push(getIngredientMeasure(apiCocktail.strIngredient2, ''));
-    }
-
-    if (apiCocktail && apiCocktail.strIngredient3 && apiCocktail.strMeasure3) {
-      ingredientList.push(
-        getIngredientMeasure(
-          apiCocktail.strIngredient3,
-          apiCocktail.strMeasure3
-        )
-      );
-    } else if (apiCocktail && apiCocktail.strIngredien3) {
-      ingredientList.push(getIngredientMeasure(apiCocktail.strIngredient3, ''));
-    }
-
-    if (apiCocktail && apiCocktail.strIngredient4 && apiCocktail.strMeasure4) {
-      ingredientList.push(
-        getIngredientMeasure(
-          apiCocktail.strIngredient4,
-          apiCocktail.strMeasure4
-        )
-      );
-    } else if (apiCocktail && apiCocktail.strIngredient4) {
-      ingredientList.push(getIngredientMeasure(apiCocktail.strIngredient4, ''));
-    }
-
-    if (apiCocktail && apiCocktail.strIngredient5 && apiCocktail.strMeasure1) {
-      ingredientList.push(
-        getIngredientMeasure(
-          apiCocktail.strIngredient5,
-          apiCocktail.strMeasure5
-        )
-      );
-    } else if (apiCocktail && apiCocktail.strIngredient5) {
-      ingredientList.push(getIngredientMeasure(apiCocktail.strIngredient5, ''));
-    }
-    if (apiCocktail && apiCocktail.strIngredient6 && apiCocktail.strMeasure6) {
-      ingredientList.push(
-        getIngredientMeasure(
-          apiCocktail.strIngredient6,
-          apiCocktail.strMeasure6
-        )
-      );
-    } else if (apiCocktail && apiCocktail.strIngredient6) {
-      ingredientList.push(getIngredientMeasure(apiCocktail.strIngredient6, ''));
-    }
-
-    if (apiCocktail && apiCocktail.strIngredient7 && apiCocktail.strMeasure7) {
-      ingredientList.push(
-        getIngredientMeasure(
-          apiCocktail.strIngredient7,
-          apiCocktail.strMeasure7
-        )
-      );
-    } else if (apiCocktail && apiCocktail.strIngredient7) {
-      ingredientList.push(getIngredientMeasure(apiCocktail.strIngredient7, ''));
-    }
-
-    if (apiCocktail && apiCocktail.strIngredient8 && apiCocktail.strMeasure8) {
-      ingredientList.push(
-        getIngredientMeasure(
-          apiCocktail.strIngredient8,
-          apiCocktail.strMeasure8
-        )
-      );
-    } else if (apiCocktail && apiCocktail.strIngredient8) {
-      ingredientList.push(getIngredientMeasure(apiCocktail.strIngredient8, ''));
-    }
-
-    if (apiCocktail && apiCocktail.strIngredient9 && apiCocktail.strMeasure9) {
-      ingredientList.push(
-        getIngredientMeasure(
-          apiCocktail.strIngredient9,
-          apiCocktail.strMeasure9
-        )
-      );
-    } else if (apiCocktail && apiCocktail.strIngredient9) {
-      ingredientList.push(getIngredientMeasure(apiCocktail.strIngredient9, ''));
-    }
-
-    if (
-      apiCocktail &&
-      apiCocktail.strIngredient11 &&
-      apiCocktail.strMeasure11
-    ) {
-      ingredientList.push(
-        getIngredientMeasure(
-          apiCocktail.strIngredient11,
-          apiCocktail.strMeasure11
-        )
-      );
-    } else if (apiCocktail && apiCocktail.strIngredient11) {
-      ingredientList.push(
-        getIngredientMeasure(apiCocktail.strIngredient11, '')
-      );
-    }
-
-    if (
-      apiCocktail &&
-      apiCocktail.strIngredient12 &&
-      apiCocktail.strMeasure12
-    ) {
-      ingredientList.push(
-        getIngredientMeasure(
-          apiCocktail.strIngredient12,
-          apiCocktail.strMeasure12
-        )
-      );
-    } else if (apiCocktail && apiCocktail.strIngredient12) {
-      ingredientList.push(
-        getIngredientMeasure(apiCocktail.strIngredient12, '')
-      );
-    }
-
-    if (
-      apiCocktail &&
-      apiCocktail.strIngredient13 &&
-      apiCocktail.strMeasure13
-    ) {
-      ingredientList.push(
-        getIngredientMeasure(
-          apiCocktail.strIngredient13,
-          apiCocktail.strMeasure13
-        )
-      );
-    } else if (apiCocktail && apiCocktail.strIngredient13) {
-      ingredientList.push(
-        getIngredientMeasure(apiCocktail.strIngredient13, '')
-      );
-    }
-
-    if (
-      apiCocktail &&
-      apiCocktail.strIngredient14 &&
-      apiCocktail.strMeasure14
-    ) {
-      ingredientList.push(
-        getIngredientMeasure(
-          apiCocktail.strIngredient14,
-          apiCocktail.strMeasure14
-        )
-      );
-    } else if (apiCocktail && apiCocktail.strIngredient14) {
-      ingredientList.push(
-        getIngredientMeasure(apiCocktail.strIngredient14, '')
-      );
-    }
-
-    if (
-      apiCocktail &&
-      apiCocktail.strIngredient15 &&
-      apiCocktail.strMeasure15
-    ) {
-      ingredientList.push(
-        getIngredientMeasure(
-          apiCocktail.strIngredient15,
-          apiCocktail.strMeasure15
-        )
-      );
-    } else if (apiCocktail && apiCocktail.strIngredient15) {
-      ingredientList.push(
-        getIngredientMeasure(apiCocktail.strIngredient15, '')
-      );
+    // parse all ingredients and their measur
+    for (let cocktailIndex = 1; cocktailIndex <=15; cocktailIndex++) {
+      const measureName = `strMeasure${cocktailIndex + 1}`
+      const ingredientName = `strIngredient${cocktailIndex + 1}`
+      if (
+        apiCocktail?.[ingredientName] &&
+        apiCocktail?.[measureName]
+      ) {
+        ingredientList.push(
+          getIngredientMeasure(
+            apiCocktail[ingredientName],
+            apiCocktail[measureName],
+          )
+        );
+      } else if (apiCocktail?.[ingredientName]) {
+        ingredientList.push(
+          getIngredientMeasure(apiCocktail[ingredientName], '')
+        );
+      }
     }
     this.ingredients = ingredientList;
   }
